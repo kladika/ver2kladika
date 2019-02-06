@@ -23,3 +23,4 @@ This project uses the Angular CLI, so we need to install it.
 
 # Feedback
 We are in the early days of this project, please send us an email with feedback, telling how you use the project, suggesting what parts of the project are not easy to grasp or use, and telling us what features do you think are missing.
+# kladika2
