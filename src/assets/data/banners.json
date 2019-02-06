@@ -1,0 +1,23 @@
+[
+  {
+    "image": "/assets/imgs/banners/banner-1.jpg",
+    "title": "MAKE YOUR PRODUCTS SHINE!",
+    "text": "As the temperature drops and the wind chill increases, limit the amount time you spend outdoors. If you must be out in the cold.",
+    "subtext": "You don’t want your skin exposed",
+    "product": "black-mamba"
+  },
+  {
+    "image": "/assets/imgs/banners/banner-2.jpg",
+    "title": "SELECT THE CORRECT SHOES",
+    "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    "subtext": "Where can I get some?",
+    "product": "airperez"
+  },
+  {
+    "image": "/assets/imgs/banners/banner-3.jpg",
+    "title": "AND ALWAYS REMEMBER TO HAVE FUN!",
+    "text": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.",
+    "subtext": "Where does it come from?",
+    "product": "spacex"
+  }
+]

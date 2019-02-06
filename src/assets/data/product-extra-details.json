@@ -1,0 +1,148 @@
+{
+  "reviews": [
+    {
+      "username": "7Mike7",
+      "image": "/assets/imgs/products/product-1.jpg",
+      "verified": true,
+      "date": "12/22/17",
+      "title": "Great buy",
+      "rate": 4,
+      "comment": "Really comfortable for 5-10km good grip on muddy paths",
+      "votes": {
+        "yes": 3,
+        "no": 0
+      }
+    },
+    {
+      "username": "Schmidt",
+      "image": "/assets/imgs/products/product-2.jpg",
+      "verified": true,
+      "date": "12/22/17",
+      "title": "best purchase ever",
+      "rate": 5,
+      "comment": "Excellent road running shoe, ran a half marathon in them and my feet felt fine after, much better than last trainers!",
+      "votes": {
+        "yes": 3,
+        "no": 0
+      }
+    },
+    {
+      "username": "Timoteo",
+      "image": "/assets/imgs/products/product-3.jpg",
+      "verified": true,
+      "date": "12/22/17",
+      "title": "Good quality, reasonable price!",
+      "rate": 4,
+      "comment": "Good quality, right in size. Will probably do many miles in these shoes :)",
+      "votes": {
+        "yes": 3,
+        "no": 0
+      }
+    },
+    {
+      "username": "7Mike7",
+      "image": "/assets/imgs/products/product-5.jpg",
+      "verified": true,
+      "date": "12/22/17",
+      "title": "Extremely comfortable",
+      "rate": 5,
+      "comment": "Comfort and quality product. Just what I wanted for the gym.",
+      "votes": {
+        "yes": 3,
+        "no": 0
+      }
+    }
+  ],
+  "related": [
+    {
+      "title": "DuoDarnel",
+      "slug": "duodarnel",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-3.jpg",
+        "/assets/imgs/products/product-4.jpg",
+        "/assets/imgs/products/product-1.jpg",
+        "/assets/imgs/products/product-2.jpg"
+      ],
+      "price": 30,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 3,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "running",
+      "tag": "new-collection"
+    },
+    {
+      "title": "Airperez",
+      "slug": "airperez",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-4.jpg",
+        "/assets/imgs/products/product-1.jpg",
+        "/assets/imgs/products/product-2.jpg",
+        "/assets/imgs/products/product-3.jpg"
+      ],
+      "price": 90,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 4,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "kids",
+      "tag": "new-collection"
+    },
+    {
+      "title": "Spacex",
+      "slug": "spacex",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-7.jpg",
+        "/assets/imgs/products/product-8.jpg",
+        "/assets/imgs/products/product-5.jpg",
+        "/assets/imgs/products/product-6.jpg"
+      ],
+      "price": 30,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 4,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "outdoors",
+      "tag": "summer",
+      "sale": true
+    },
+    {
+      "title": "Tealtom",
+      "slug": "tealtom",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-8.jpg",
+        "/assets/imgs/products/product-5.jpg",
+        "/assets/imgs/products/product-6.jpg",
+        "/assets/imgs/products/product-7.jpg"
+      ],
+      "price": 90,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 2,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "women",
+      "tag": "summer",
+      "banner": "20% OFF"
+    }
+  ]
+}

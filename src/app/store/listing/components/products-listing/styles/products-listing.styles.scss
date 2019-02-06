@@ -1,0 +1,139 @@
+@import '../../../../../styles/_shared';
+
+app-products-listing {
+  display: block;
+
+  .listing-wrapper {
+    margin-left: -0.6rem;
+    margin-right: -0.6rem;
+  }
+
+  .no-products {
+    margin: 4rem 0rem;
+    text-align: center;
+  }
+
+  .listing-item {
+    border: 1px solid transparent;
+    padding: 1rem 0.6rem;
+
+    &:hover {
+      border-color: $grey-2;
+    }
+
+    .item-anchor {
+      display: block;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .item-img-wrapper {
+      position: relative;
+
+      .item-artifact {
+        position: absolute;
+        z-index: 1;
+        color: $white;
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 0.3rem 0.6rem;
+
+        &.favorite-artifact {
+          top: 0.3rem;
+          right: 0.6rem;
+          color: $white;
+          font-size: 1.5rem;
+          text-shadow: 0 2px 2px $black;
+          padding: 0.2rem;
+
+          &:hover {
+            color: $cherry;
+
+            &::before {
+              content: '\f004';// Font Awesome fill heart code
+            }
+          }
+        }// .favorite-artifact
+
+        &.banner-artifact {
+          left: 0;
+          right: 0;
+          bottom: 0;
+          text-align: center;
+          background-color: $aquamarina;
+        }
+
+        &.label-artifact {
+          top: 0;
+          left: 0.6rem;
+
+          &.sale-label {
+            background-color: $red;
+          }
+
+          &.new-label {
+            background-color: $black;
+          }
+        }// .label-artifact
+      }// .item-artifact
+
+      .item-img {
+        width: 100%;
+      }
+    }// .item-img-wrapper
+
+    .item-title {
+      color: $purple;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 0.6rem;
+      margin-bottom: 0.3rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }// .item-title
+
+    .item-category {
+      color: $grey;
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      text-transform: capitalize;
+    }// .item-category
+
+    .item-relevant-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .item-price {
+        color: $black;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      app-star-rating.item-rating {
+        justify-content: center;
+
+        .rating-icon {
+          color: $gold;
+        }
+      }// .item-rating
+    }// .item-relevant-info
+
+    // Responsive styles
+    @include media-breakpoint-down(lg) {
+      .item-title {
+        font-size: 1rem;
+      }
+
+      .item-category {
+        font-size: 0.8rem;
+      }
+    }
+
+  }// .listing-item
+}

@@ -1,0 +1,190 @@
+<!-- Jumbotron - Above the fold -->
+<section class="storefront-jumbotron">
+  <div class="container-fluid">
+    <div class="jumbotron-highlight row">
+      <div class="col-12">
+        <h3 class="jumbotron-title">
+         A FASHION
+          <em class="title-emphasis"> MarketPlace</em>
+        </h3>
+      </div>
+      <div class="col-12">
+        <div class="slogan-wrapper">
+          <h3 class="slogan-copy">
+            Connecting Different Fashion Shops & Brands
+          </h3>
+        </div>
+      </div>
+      <div class="col-12 col-md-10 mx-md-auto col-lg-8">
+        <app-search-bar class="store-search-bar"></app-search-bar>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Store categories -->
+<div class="container">
+  <div class="row storefront-categories">
+    <div class="col-12 col-lg-6 store-main-category-col">
+      <app-background-image class="store-main-category women-category" [src]="'/assets/imgs/home/women1.png'">
+        <app-fill-container [ratio]="{w:4, h:3}">
+          <a class="main-category-anchor" [routerLink]="['/products/category', 'women']">
+            <button type="button" class="btn main-category-btn">
+              SHOP WOMEN
+            </button>
+          </a>
+        </app-fill-container>
+      </app-background-image>
+    </div>
+    <div class="col-12 col-lg-6 store-main-category-col">
+      <app-background-image class="store-main-category men-category" [src]="'/assets/imgs/home/men1.jpg'">
+        <app-fill-container [ratio]="{w:4, h:3}">
+          <a class="main-category-anchor" [routerLink]="['/products/category', 'men']">
+            <button type="button" class="btn main-category-btn">
+              SHOP MEN
+            </button>
+          </a>
+        </app-fill-container>
+      </app-background-image>
+    </div>
+    <div class="col-6 col-lg-3 store-secondary-category-col">
+      <div class="store-secondary-category">
+        <app-fill-container [ratio]="{w:2, h:1}">
+          <a class="btn secondary-category-btn" [routerLink]="['/products/category', 'kids']">
+            KIDS
+          </a>
+        </app-fill-container>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3 store-secondary-category-col">
+      <div class="store-secondary-category">
+        <app-fill-container [ratio]="{w:2, h:1}">
+          <a class="btn secondary-category-btn" [routerLink]="['/products/category', 'outdoors']">
+            OUTDOORS
+          </a>
+        </app-fill-container>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3 store-secondary-category-col">
+      <div class="store-secondary-category">
+        <app-fill-container [ratio]="{w:2, h:1}">
+          <a class="btn secondary-category-btn" [routerLink]="['/products/category', 'running']">
+            RUNNING
+          </a>
+        </app-fill-container>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3 store-secondary-category-col">
+      <div class="store-secondary-category">
+        <app-fill-container [ratio]="{w:2, h:1}">
+          <a class="btn secondary-category-btn" [routerLink]="['/products/category', 'golf']">
+            GOLF
+          </a>
+        </app-fill-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <section class="highlighted-products-section">
+  <div class="container carousel-container">
+    <app-stylish-carousel class="products-carousel">
+      <carousel [showIndicators]="false" [noWrap]="true">
+        <slide *ngFor="let banner of highlightedProducts">
+          <div class="row highlighted-product-banner">
+            <div class="col-lg-6 order-last order-lg-first">
+              <app-preload-image [classes]="'banner-image'" [ratio]="{w:520, h:362}" [src]="banner.image" alt="banner image" title="banner image">
+              </app-preload-image>
+            </div>
+            <div class="col-lg-6 banner-details-col">
+              <div class="banner-copy">
+                <h3 class="banner-title">{{ banner.title }}</h3>
+                <p class="banner-description">{{ banner.text }}</p>
+                <span class="banner-tagline">{{ banner.subtext }}</span>
+              </div>
+              <div class="banner-actions">
+                <a class="btn banner-call-to-action-btn" [routerLink]="['/product', banner.product]">SHOP NOW</a>
+              </div>
+            </div>
+          </div>
+        </slide>
+      </carousel>
+    </app-stylish-carousel>
+  </div>
+</section> -->
+
+<section class="container storefront-attributes-section">
+  <div class="row storefront-attributes-wrapper">
+    <div class="col-12 col-sm-6 col-md-4 storefront-attribute">
+      <div class="attribute-illustration-wrapper">
+        <app-preload-image [classes]="'attribute-illustration'" [ratio]="{w:1, h:1}" src="/assets/imgs/home/cart.svg" alt="Cart" title="Cart">
+        </app-preload-image>
+      </div>
+      <h4 class="attribute-title">YOUR CART</h4>
+      <p class="attribute-copy">
+        This is a descriptive text of what this title may be trying to say
+      </p>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 storefront-attribute">
+      <div class="attribute-illustration-wrapper">
+        <app-preload-image [classes]="'attribute-illustration'" [ratio]="{w:1, h:1}" src="/assets/imgs/home/truck.svg" alt="Truck" title="Truck">
+        </app-preload-image>
+      </div>
+      <h4 class="attribute-title">FREE DELIVERY</h4>
+      <p class="attribute-copy">
+        This is a descriptive text of what this title may be trying to say
+      </p>
+      </div>
+    <div class="col-12 col-sm-6 col-md-4 storefront-attribute">
+      <div class="attribute-illustration-wrapper">
+        <app-preload-image [classes]="'attribute-illustration'" [ratio]="{w:1, h:1}" src="/assets/imgs/home/wallet.svg" alt="Wallet" title="Wallet">
+        </app-preload-image>
+      </div>
+      <h4 class="attribute-title">PAYMENT OPTIONS</h4>
+      <p class="attribute-copy">
+        This is a descriptive text of what this title may be trying to say
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="container storefront-products-listing-section">
+  <div class="row products-listing-heading">
+    <div class="col-12 listing-title-wrapper">
+      <h3 class="listing-title">NEW COLLECTION</h3>
+    </div>
+  </div>
+  <app-products-listing [items]="newCollectionProducts"></app-products-listing>
+  <div class="row products-listing-heading">
+    <div class="col-12 listing-title-wrapper">
+      <h3 class="listing-title">SUMMER SALE</h3>
+    </div>
+  </div>
+  <app-products-listing [items]="summerSaleProducts"></app-products-listing>
+</section>
+
+<div class="storefront-call-to-action-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8 offset-lg-2">
+        <h2 class="banner-title">LET IT BE AWESOME</h2>
+        <p class="banner-copy">
+          Take control of you business with this fashion template.  Remember, YOU have
+          the power to make your business what you want it to be. You CAN create a
+          business you love.
+        </p>
+        <span class="banner-tagline">Tomorrow starts today!</span>
+        <div class="row banner-actions">
+          <div class="col-12 col-md-6 action-col">
+            <button type="button" class="btn call-to-action-outline-btn">SUBSCRIBE</button>
+          </div>
+          <div class="col-12 col-md-6 action-col">
+            <button type="button" class="btn call-to-action-fill-btn">SHOP NOW</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

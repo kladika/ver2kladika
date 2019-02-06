@@ -1,0 +1,22 @@
+@import '../../../styles/_shared';
+
+app-star-rating {
+  display: flex;
+	justify-content: flex-end;
+	align-items:center;
+  // To compensate the rating icons padding
+  margin-left: -0.1rem;
+  margin-right: -0.1rem;
+
+	.rating-icon {
+		flex: 1;
+	  max-width: 1.2em;
+		margin: 0px;
+		padding: 0 0.1em;
+    line-height: 1;
+
+		.fa {
+      color: inherit;
+		}
+	}
+}

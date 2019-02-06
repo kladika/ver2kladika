@@ -1,0 +1,16 @@
+@import '../../../../../styles/_shared';
+
+app-about-page {
+  display: block;
+  min-height: calc(100vh - #{ $navbar-height });
+  padding-bottom: 6rem;
+
+  .about-title {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+    color: $black;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 0.25rem;
+  }
+}

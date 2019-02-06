@@ -1,0 +1,50 @@
+@import '../../../styles/_shared';
+
+app-background-image {
+  display: block;
+  position: relative;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all ease-in-out .3s;
+  z-index: 0;
+
+  // Background overlay
+  &::before
+  {
+    content: '';
+    background: $preload-image-bg;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.6;
+    z-index: -1;
+  }
+
+  .aux-img {
+    display: none;
+    visibility: hidden;
+  }
+
+  .spinner {
+    position: absolute;
+    top: calc(50% - #{ ($spinner-size/2) });
+    left: calc(50% - #{ ($spinner-size/2) });
+    width: $spinner-size;
+    height: $spinner-size;
+    font-size: $spinner-size;
+    line-height: $spinner-size;
+    color: $spinner-color;
+    z-index: -1;
+  }
+
+  &.img-loaded
+  {
+    .spinner {
+      display: none;
+      visibility: hidden;
+    }
+  }
+}

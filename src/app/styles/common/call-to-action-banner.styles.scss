@@ -1,0 +1,57 @@
+@import '../_shared';
+
+@mixin call-to-action-banner() {
+  background-image: url('/assets/imgs/home/cta-bg.png');
+  background-size: cover;
+  color: $white;
+  text-align: center;
+  padding: 50px 0;
+
+  .banner-title {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.12rem;
+    margin-bottom: 30px;
+  }
+
+  .banner-copy {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+
+  .banner-tagline {
+    display: block;
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+
+  .banner-actions {
+    .call-to-action-outline-btn {
+      @include outline-button($white, transparent, $white, $purple);
+      padding: 1rem 3rem;
+    }
+
+    .call-to-action-fill-btn {
+      @include fill-button($purple, $white, $white, $purple);
+      padding: 1rem 3rem;
+    }
+
+    @include media-breakpoint-down(sm) {
+      .action-col + .action-col {
+        margin-top: 30px;
+      }
+    }
+
+    @include media-breakpoint-down(xs) {
+      .call-to-action-outline-btn,
+      .call-to-action-fill-btn {
+        width: 100%;
+      }
+    }
+  }// .banner-actions
+}

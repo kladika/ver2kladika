@@ -1,0 +1,68 @@
+@import '../_shared';
+
+@mixin color-chooser-input($color-options-per-row: 8) {
+  // 8 per row => (100% / 8) = 12.5%
+  $color-option-width: (100% / $color-options-per-row);
+  $color-option-width-lg: (100% / ($color-options-per-row + 2));
+
+  .color-options-wrapper {
+    margin: 0px;
+    margin-left: -0.3rem;
+    margin-right: -0.3rem;
+
+    .color-option {
+      padding: 0px;
+      flex: 0 0 $color-option-width;
+      max-width: $color-option-width;
+
+      .color-btn {
+        border: 2px solid transparent;
+        box-shadow: 1px 1px 3px 1px rgba(117,117,117,0.3);
+        border-radius: 50%;
+        padding: 0px;
+        margin: 0px 0.3rem 0.6rem;
+        height: 0px;
+        // Preserve 1:1 aspect ratio
+        width: calc(100% - (0.6rem));// Substract 0.3rem of margin-left and margin-right respectively
+        padding-bottom: calc(100% - (0.6rem + 4px));// Substract 0.6rem of margin-botttom and 2px of border-top-width and border-bottom-width respectively
+        opacity: 0.4;
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        &:focus {
+          opacity: 1;
+        }
+
+        &.active,
+        &:active {
+          opacity: 1;
+          border-color: $grey !important;
+          box-shadow: none;
+        }
+      }
+    }// .color-option
+
+    // Responsive styles
+    @include media-breakpoint-up(lg) {
+      .color-option {
+        flex: 0 0 $color-option-width-lg;
+        max-width: $color-option-width-lg;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      margin-left: -0.5rem;
+      margin-right: -0.5rem;
+
+      .color-option {
+        .color-btn {
+          margin: 0px 0.5rem 1rem;
+          width: calc(100% - (1rem));// Substract 0.5rem of margin-left and margin-right respectively
+          padding-bottom: calc(100% - (1rem + 4px));// Substract 1rem of margin-botttom and 2px of border-top-width and border-bottom-width respectively
+        }
+      }
+    }
+  }// .color-options-wrapper
+}

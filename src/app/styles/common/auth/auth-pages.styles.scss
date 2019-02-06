@@ -1,0 +1,103 @@
+@import '../../_shared';
+
+.auth-page {
+  min-height: calc(100vh - #{ $navbar-height });
+  padding-bottom: 6rem;
+  // Half screen background image
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('/assets/imgs/home/cta-bg.png');
+
+  @include media-breakpoint-only(xl) {
+    // col-xl-6 => left 50vw (+ col-1 to give some blank space) => (7*100)/12 = 58.33vw
+    background-position: left 58.33vw top 0px;
+  }
+
+  @include media-breakpoint-only(lg) {
+    // col-lg-7 => left 58.33vw (+ col-1 to give some blank space) => (8*100)/12 = 66.66vw
+    background-position: left 66.66vw top 0px;
+  }
+
+  @include media-breakpoint-down(md) {
+    background: none;
+  }
+}// .auth-page
+
+.auth-modal {
+  .auth-form-wrapper {
+    .auth-title {
+      padding: 0;
+      margin: 0;
+      font-size: 1.4rem;
+    }
+  }
+
+  .modal-header {
+    align-items: center;
+
+    .close {
+      font-size: 1.8rem;
+    }
+  }
+}// .auth-modal
+
+.auth-form-wrapper {
+  .auth-title {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+    color: $black;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 0.25rem;
+  }
+
+  .auth-alt-options {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+
+    .secondary-call-to-action-btn {
+      @include link-button($purple);
+    }
+
+    @include media-breakpoint-down(xs) {
+      flex-wrap: wrap;
+
+      .secondary-call-to-action-btn {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .auth-form-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    // Line decoration
+    &::before,
+    &::after {
+      content: '';
+      background: $grey;
+      height: 2px;
+      flex: 1 1 auto;
+    }
+
+    .divider-text {
+      color: $black;
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.2rem;
+      margin: 0px;
+      padding: 0px 1rem;
+    }
+  }
+
+  .social-alternative-btn {
+    @include outline-button($white, $facebook-blue, $facebook-blue);
+    height: 4rem;
+  }
+}// .auth-form-wrapper

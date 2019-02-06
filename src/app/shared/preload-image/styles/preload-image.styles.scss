@@ -1,0 +1,45 @@
+@import '../../../styles/_shared';
+
+app-preload-image {
+  display: block;
+  background-color: $preload-image-bg;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: visibility 0s linear, opacity .5s linear;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .spinner {
+    position: absolute;
+    top: calc(50% - #{ ($spinner-size/2) });
+    left: calc(50% - #{ ($spinner-size/2) });
+    width: $spinner-size;
+    height: $spinner-size;
+    font-size: $spinner-size;
+    line-height: $spinner-size;
+    color: $spinner-color;
+    z-index: -1;
+  }
+
+  &.img-loaded {
+    background-color: transparent;
+    border: 0;
+
+    img {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .spinner {
+      display: none;
+      visibility: hidden;
+    }
+  }
+}

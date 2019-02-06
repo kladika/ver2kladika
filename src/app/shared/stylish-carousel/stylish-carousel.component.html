@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-12 order-last order-lg-first carousel-wrapper-col">
+    <ng-content></ng-content>
+  </div>
+  <div class="col-12 custom-controls-wrapper-col">
+    <div class="carousel-custom-controls">
+      <button class="btn carousel-control prev-control-btn" (click)="carousel.previousSlide()">
+        <img class="control-arrow-illustration" src="/assets/imgs/home/banner-arrow-right.svg" alt="Prev">
+      </button>
+      <div class="carousel-slide-indicators">
+        <span class="slide-indicator active-slide">{{ (carousel.activeSlide + 1) }}</span>
+        <span class="slide-indicator last-slide">{{ carousel.slides.length }}</span>
+      </div>
+      <button class="btn carousel-control next-control-btn" (click)="carousel.nextSlide()">
+        <img class="control-arrow-illustration" src="/assets/imgs/home/banner-arrow-right.svg" alt="Next">
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="auth-modal">
+  <div class="auth-form-wrapper">
+    <div class="modal-header">
+      <h4 class="modal-title auth-title">Create a new Account</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-auth-signup-form (success)="signupSuccess($event)"></app-auth-signup-form>
+      <div class="auth-alt-options">
+        <a class="btn btn-link secondary-call-to-action-btn" (click)="handleSigninIntention()">
+          Already have an account?
+        </a>
+      </div>
+      <div class="auth-form-divider">
+        <span class="divider-text">OR</span>
+      </div>
+      <button class="btn btn-block social-alternative-btn" (click)="handleSocialSignupIntention()">
+        SIGN UP WITH FACEBOOK
+      </button>
+    </div>
+  </div>
+</div>

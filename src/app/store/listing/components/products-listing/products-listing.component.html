@@ -1,0 +1,30 @@
+<div class="row listing-wrapper" *ngIf="items.length > 0">
+  <div class="col-6 col-md-4 col-lg-3 listing-item" *ngFor="let item of items">
+    <a class="item-anchor" [routerLink]="['/product', item.slug]">
+      <div class="item-img-wrapper">
+        <div class="item-artifact banner-artifact" *ngIf="item.banner">
+          {{ item.banner }}
+        </div>
+        <div class="item-artifact label-artifact sale-label" *ngIf="item.sale">
+          SALE
+        </div>
+        <div class="item-artifact label-artifact new-label" *ngIf="item.new">
+          NEW
+        </div>
+        <span class="item-artifact favorite-artifact fa fa-heart-o"></span>
+        <app-preload-image [classes]="'item-img'" [ratio]="{w:1, h:1}" [src]="item.images[0]" [alt]="item.title" [title]="item.title"></app-preload-image>
+      </div>
+      <h4 class="item-title">{{ item.title }}</h4>
+      <span class="item-category">{{ item.category }}</span>
+      <div class="item-relevant-info">
+        <span class="item-price">$ {{ item.price }}</span>
+        <app-star-rating class="item-rating" [ngModel]="item.rate.overall" max="5" readOnly="true"></app-star-rating>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="row no-products" *ngIf="items.length == 0">
+  <div class="col-12">
+    <h3>There are no products matching your filters</h3>
+  </div>
+</div>

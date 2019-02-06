@@ -1,0 +1,24 @@
+<div class="auth-modal">
+  <div class="auth-form-wrapper">
+    <div class="modal-header">
+      <h4 class="modal-title auth-title">Welcome back!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-auth-signin-form (success)="signinSuccess($event)"></app-auth-signin-form>
+      <div class="auth-alt-options">
+        <a class="btn btn-link secondary-call-to-action-btn" (click)="handleSignupIntention()">
+          Don't have an Account yet?
+        </a>
+      </div>
+      <div class="auth-form-divider">
+        <span class="divider-text">OR</span>
+      </div>
+      <button class="btn btn-block social-alternative-btn" (click)="handleSocialSigninIntention()">
+        SIGN IN WITH FACEBOOK
+      </button>
+    </div>
+  </div>
+</div>

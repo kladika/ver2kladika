@@ -1,0 +1,31 @@
+@import '../../../styles/_shared';
+
+app-search-bar {
+  display: block;
+  color: $grey;
+  border-color: $grey;
+
+  .search-bar-input {
+    color: inherit;
+    background-color: $white;
+    border-color: inherit;
+    border-width: 2px;
+    border-radius: 4px;
+
+    &::placeholder {
+      color: inherit;
+      opacity: 0.8;
+      font-weight: 500;
+    }
+
+    &:focus {
+      color: $darkgrey;
+      border-color: inherit;
+      box-shadow: none;
+
+      &::placeholder {
+        opacity: 0.6;
+      }
+    }
+  }// .search-bar-input
+}

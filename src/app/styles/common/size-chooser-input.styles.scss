@@ -1,0 +1,38 @@
+@import '../_shared';
+
+@mixin size-chooser-input($size-options-per-row: 4) {
+  // 4 per row => (100% / 4) = 25%
+  $size-option-width: (100% / $size-options-per-row);
+  $size-option-width-lg: (100% / ($size-options-per-row + 1));
+
+  .size-options-wrapper {
+    margin: 0px;
+    margin-left: -0.3rem;
+    margin-right: -0.3rem;
+  }
+
+  .size-option {
+    padding: 0px;
+    flex: 0 0 $size-option-width;
+    max-width: $size-option-width;
+    font-size: 1rem;
+
+    .size-btn {
+      @include outline-button($grey, $white, $grey);
+      border-width: 2px;
+      // font-size: 1rem;
+      font-size: inherit;
+      font-weight: 500;
+      margin: 0px 0.3rem 0.6rem;
+      width: calc(100% - (0.6rem));// Substract 0.3rem of margin-left and margin-right respectively
+    }
+  }// .size-option
+
+  // Responsive styles
+  @include media-breakpoint-up(lg) {
+    .size-option {
+      flex: 0 0 $size-option-width-lg;
+      max-width: $size-option-width-lg;
+    }
+  }
+}

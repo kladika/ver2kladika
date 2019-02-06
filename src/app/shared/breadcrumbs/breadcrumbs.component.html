@@ -1,0 +1,14 @@
+<ng-container *ngIf="(breadcrumbsObservable | async).length > 0">
+  <div class="row">
+    <div class="col-12">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item" *ngFor="let breadcrumb of (breadcrumbsObservable | async); let last = last;">
+          <a class="breadcrumb-link" *ngIf="!last; else lastItem" [routerLink]="[breadcrumb.url]">{{ breadcrumb.label }}</a>
+          <ng-template #lastItem>
+            <span>{{ breadcrumb.label }}</span>
+          </ng-template>
+        </li>
+      </ol>
+    </div>
+  </div>
+</ng-container>

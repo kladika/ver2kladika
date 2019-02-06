@@ -1,0 +1,54 @@
+@import '../../../styles/_shared';
+
+app-percentage-bar-rating {
+  display: block;
+
+  .rating-bar-wrapper {
+    position: relative;
+    padding: 4px 0px;
+    margin-bottom: 0.5rem;
+
+    .rating-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: $grey-3;
+      border-radius: 4px;
+      height: 8px;
+      width: 100%;
+      padding: 0px 2px;
+
+      .rating-guide-mark {
+        display: block;
+        background-color: $grey;
+        border-radius: 50%;
+        height: 4px;
+        width: 4px;
+        opacity: .5;
+      }
+    }
+
+    .rating-indicator {
+      position: absolute;
+      display: block;
+      background-color: $gold;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      top: 0px;
+    }
+  }// .rating-bar-wrapper
+
+  .rating-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .rating-bar-label {
+      color: $grey;
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }// .rating-bar-labels
+}

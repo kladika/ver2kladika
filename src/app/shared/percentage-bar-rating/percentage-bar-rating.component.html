@@ -1,0 +1,10 @@
+<div class="rating-bar-wrapper">
+  <div class="rating-bar">
+    <span class="rating-guide-mark" *ngFor="let m of _marks"></span>
+  </div>
+  <span class="rating-indicator" [ngStyle]="{ 'left': rating + '%' }"></span>
+</div>
+
+<div class="rating-bar-labels" *ngIf="labels && labels.length">
+  <span class="rating-bar-label" *ngFor="let label of labels">{{ label }}</span>
+</div>

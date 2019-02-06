@@ -1,0 +1,305 @@
+<div class="container" *ngIf="!product">
+  <div class="row no-product-found-heading">
+    <div class="col-12">
+      <h2 class="no-product-title">We couldn't find the product you are looking for</h2>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="product">
+  <app-breadcrumbs></app-breadcrumbs>
+  <!-- Store promo banner -->
+  <div class="row">
+    <div class="col-12">
+      <div class="promo-banner-wrapper">
+        <span class="promo-banner-copy">ENJOY FREE SHIPPING WORLDWIDE</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row product-details">
+    <!-- Product heading for small viewports -->
+    <div class="col-12 d-block d-md-none product-heading">
+      <h2 class="product-title">{{ product.title }}</h2>
+      <span class="product-price">{{ product.price }} KES</span>
+    </div>
+    <div class="col-12 col-md-6 col-lg-7 product-images" *ngIf="product.images && product.images.length">
+      <app-preload-image [classes]="'expanded-image'" [ratio]="{w:1, h:1}" [src]="selectedImage" alt="Product image" title="Product image">
+      </app-preload-image>
+      <div class="row thumbnails-gallery">
+        <div class="col-6 col-md-4 col-lg-3" *ngFor="let image of product.images">
+          <app-preload-image class="thumbnail-image-wrapper" [classes]="'thumbnail-image'" [ratio]="{w:1, h:1}" [src]="image" alt="Product image" title="Product image" [ngClass]="{'active': image == selectedImage}" (click)="selectImage(image)">
+          </app-preload-image>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-5 product-info">
+      <div class="d-none d-md-block product-heading">
+        <h2 class="product-title">{{ product.title }}</h2>
+        <span class="product-price">{{ product.price }} USD</span>
+      </div>
+      <form [formGroup]="productVariantForm" (ngSubmit)="onSubmit()">
+        <div class="form-group product-color-chooser" *ngIf="product.colors && product.colors.length">
+          <h3 class="product-sub-title">COLOR</h3>
+          <div class="row color-options-wrapper" btnRadioGroup formControlName="color_chooser">
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#fc9961" appColorRadioBtn="#fc9961"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#007bff" appColorRadioBtn="#007bff"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#6610f2" appColorRadioBtn="#6610f2"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#6f42c1" appColorRadioBtn="#6f42c1"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#e83e8c" appColorRadioBtn="#e83e8c"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#dc3545" appColorRadioBtn="#dc3545"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#ffc107" appColorRadioBtn="#ffc107"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#28a745" appColorRadioBtn="#28a745"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#20c997" appColorRadioBtn="#20c997"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#17a2b8" appColorRadioBtn="#17a2b8"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#343a40" appColorRadioBtn="#343a40"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#61fcc5" appColorRadioBtn="#61fcc5"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#fc61ad" appColorRadioBtn="#fc61ad"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#fff" appColorRadioBtn="#fff"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnRadio="#6c757d" appColorRadioBtn="#6c757d"></label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group product-size-chooser" *ngIf="product.sizes && product.sizes.length">
+          <h3 class="product-sub-title">SIZE</h3>
+          <div class="row size-options-wrapper" btnRadioGroup formControlName="size_chooser">
+            <div class="size-option">
+              <label class="btn size-btn" btnRadio="7">7</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnRadio="7.5">7.5</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnRadio="8">8</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnRadio="8.5">8.5</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnRadio="9">9</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnRadio="9.5">9.5</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnRadio="10">10</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnRadio="10.5">10.5</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnRadio="11">11</label>
+            </div>
+          </div>
+        </div>
+        <ng-container *ngIf="product.description">
+          <h3 class="product-sub-title">DESCRIPTION</h3>
+          <p class="product-description">{{ product.description }}</p>
+        </ng-container>
+        <button class="btn btn-block buy-now-btn" *ngIf="(loggedInObservable | async) === false" (click)="openAuthModal()">
+          BUY NOW
+        </button>
+        <button class="btn btn-block buy-now-btn" *ngIf="(loggedInObservable | async)" type="submit">
+          BUY NOW
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row influencers-gallery-heading">
+    <div class="col-12 heading-title-wrapper">
+      <h3 class="heading-title">SHOW HOW YOU WEAR IT</h3>
+    </div>
+  </div>
+
+  <div class="influencers-gallery">
+    <carousel class="gallery-carousel" [interval]="false">
+      <slide>
+        <div class="row gallery-images-slide">
+          <div class="col-6 col-md-4 col-lg-3 gallery-image-wrapper" *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]">
+            <app-preload-image [classes]="'gallery-image'" [ratio]="{w:1, h:1}" src="https://via.placeholder.com/228x228" alt="Product image" title="Product image">
+            </app-preload-image>
+          </div>
+        </div>
+      </slide>
+      <slide>
+        <div class="row gallery-images-slide">
+          <div class="col-6 col-md-4 col-lg-3 gallery-image-wrapper" *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]">
+            <app-preload-image [classes]="'gallery-image'" [ratio]="{w:1, h:1}" src="https://via.placeholder.com/228x228/000000/ffffff/" alt="Product image" title="Product image">
+            </app-preload-image>
+          </div>
+        </div>
+      </slide>
+      <slide>
+        <div class="row gallery-images-slide">
+          <div class="col-6 col-md-4 col-lg-3 gallery-image-wrapper" *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]">
+            <app-preload-image [classes]="'gallery-image'" [ratio]="{w:1, h:1}" src="https://via.placeholder.com/228x228/ff0000/0000ff" alt="Product image" title="Product image">
+            </app-preload-image>
+          </div>
+        </div>
+      </slide>
+    </carousel>
+  </div>
+
+  <div class="row ratings-and-reviews-heading" *ngIf="product.rate || (product.reviews && product.reviews.length)">
+    <div class="col-12 heading-title-wrapper">
+      <h3 class="heading-title">RATINGS & REVIEWS</h3>
+    </div>
+  </div>
+
+  <form class="row product-ratings" [formGroup]="productRatingForm" *ngIf="product.rate">
+    <div class="col-12 overall-rating">
+      <app-star-rating formControlName="overallRating" max="5" readOnly="true"></app-star-rating>
+      <span class="rating-description" *ngIf="product.reviews && product.reviews.length">
+        <b>{{ product.rate.overall }}</b> out of {{ product.reviews.length }} {{ (product.reviews.length === 1) ? 'REVIEW' : 'REVIEWS' }}
+      </span>
+    </div>
+    <div class="col-12 col-md-4 isolated-rating">
+      <h4 class="isolated-rating-title">Size</h4>
+      <app-percentage-bar-rating [rating]="product.rate.size" [labels]="['small', 'perfect', 'large']"></app-percentage-bar-rating>
+    </div>
+    <div class="col-12 col-md-4 isolated-rating">
+      <h4 class="isolated-rating-title">Comfort</h4>
+      <app-percentage-bar-rating [rating]="product.rate.comfort" [tickInterval]="25" [labels]="['poor', 'excellent']"></app-percentage-bar-rating>
+    </div>
+    <div class="col-12 col-md-4 isolated-rating">
+      <h4 class="isolated-rating-title">Quality</h4>
+      <app-percentage-bar-rating [rating]="product.rate.quality" [labels]="['poor', 'excellent']"></app-percentage-bar-rating>
+    </div>
+  </form>
+
+  <div class="row product-reviews">
+    <div class="col-12">
+      <div class="row product-review" *ngFor="let review of product.reviews">
+        <div class="col-6 offset-3 col-md-2 offset-md-0">
+          <app-preload-image class="reviewer-img-wrapper" [classes]="'reviewer-profile-img'" [ratio]="{w:1, h:1}" [src]="review.image" alt="User" title="User">
+          </app-preload-image>
+        </div>
+        <div class="col-12 col-md-10">
+          <div class="review-heading">
+            <h3 class="review-title">{{ review.title }}</h3>
+            <span class="review-date">{{ review.date }}</span>
+          </div>
+          <app-star-rating class="review-rating" [ngModel]="review.rate" max="5" readOnly="true"></app-star-rating>
+          <p class="review-description">{{ review.comment }}</p>
+          <div class="reviewer-info">
+            <span class="reviewer-username">{{ review.username }}</span>
+            <span class="verified-purchase" *ngIf="review.verified">Verified Purchase</span>
+          </div>
+          <div class="review-actions">
+            <button class="btn btn-sm reply-review-btn">Reply</button>
+            <div class="review-feedback">
+              <span class="feedback-title">
+                Was this review helpful?
+              </span>
+              <button class="btn btn-sm feedback-btn" [attr.data-votes]="review.votes.yes">YES</button>
+              <button class="btn btn-sm feedback-btn" [attr.data-votes]="review.votes.no">NO</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4 offset-md-4">
+      <button class="btn btn-block load-more-reviews-btn">
+        LOAD MORE REVIEWS
+      </button>
+    </div>
+  </div>
+</div>
+
+<section class="container related-products-listing-section" *ngIf="relatedProducts">
+  <div class="row products-listing-heading">
+    <div class="col-12 listing-title-wrapper">
+      <h3 class="listing-title">YOU MAY ALSO LIKE</h3>
+    </div>
+  </div>
+  <app-products-listing [items]="relatedProducts"></app-products-listing>
+</section>
+
+<div class="store-call-to-action-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-8 offset-lg-2">
+        <h2 class="banner-title">LET IT BE AWESOME</h2>
+        <p class="banner-copy">
+          Take control of you business with this fashion template.  Remember, YOU have
+          the power to make your business what you want it to be. You CAN create a
+          business you love.
+        </p>
+        <span class="banner-tagline">Tomorrow starts today!</span>
+        <div class="row banner-actions">
+          <div class="col-12 col-md-6 action-col">
+            <button type="button" class="btn call-to-action-outline-btn">SUBSCRIBE</button>
+          </div>
+          <div class="col-12 col-md-6 action-col">
+            <button type="button" class="btn call-to-action-fill-btn">SHOP NOW</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="container store-attributes-section">
+  <div class="row storefront-attributes-wrapper">
+    <div class="col-12 col-sm-6 col-md-4 storefront-attribute">
+      <div class="attribute-illustration-wrapper">
+        <app-preload-image [classes]="'attribute-illustration'" [ratio]="{w:1, h:1}" src="/assets/imgs/home/cart.svg" alt="Cart" title="Cart">
+        </app-preload-image>
+      </div>
+      <h4 class="attribute-title">YOUR CART</h4>
+      <p class="attribute-copy">
+        This is a descriptive text of what this title may be trying to say
+      </p>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 storefront-attribute">
+      <div class="attribute-illustration-wrapper">
+        <app-preload-image [classes]="'attribute-illustration'" [ratio]="{w:1, h:1}" src="/assets/imgs/home/truck.svg" alt="Truck" title="Truck">
+        </app-preload-image>
+      </div>
+      <h4 class="attribute-title">FREE DELIVERY</h4>
+      <p class="attribute-copy">
+        This is a descriptive text of what this title may be trying to say
+      </p>
+      </div>
+    <div class="col-12 col-sm-6 col-md-4 storefront-attribute">
+      <div class="attribute-illustration-wrapper">
+        <app-preload-image [classes]="'attribute-illustration'" [ratio]="{w:1, h:1}" src="/assets/imgs/home/wallet.svg" alt="Wallet" title="Wallet">
+        </app-preload-image>
+      </div>
+      <h4 class="attribute-title">PAYMENT OPTIONS</h4>
+      <p class="attribute-copy">
+        This is a descriptive text of what this title may be trying to say
+      </p>
+    </div>
+  </div>
+</section>

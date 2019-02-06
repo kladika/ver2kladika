@@ -1,0 +1,79 @@
+@import '../../../styles/_shared';
+
+app-footer {
+  display: block;
+
+  .main-footer {
+    background-color: $black;
+    padding: 50px 0px;
+
+    .footer-sitemap-section {
+      @include media-breakpoint-down(xs) {
+        text-align: center;
+      }
+
+      .sitemap-title {
+        color: $white;
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+      }
+
+      .sitemap-items-list {
+        margin: 0px;
+
+        .sitemap-item {
+          padding: 0.2rem 0px;
+          font-size: 1rem;
+
+          @include media-breakpoint-down(xs) {
+            padding: 0.4rem 0px;
+            font-size: 0.9rem;
+          }
+
+          .sitemap-link {
+            color: $grey;
+            font-weight: 500;
+            cursor: pointer;
+
+            &:hover {
+              color: $white;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+
+    .footer-social-presence {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+
+      .social-link {
+        font-size: 1.5rem;
+        line-height: 1;
+        color: $grey;
+
+        &:hover {
+          color: $white;
+        }
+
+        .fa {
+          vertical-align: top;
+        }
+      }
+
+      @include media-breakpoint-down(md) {
+        margin-bottom: 50px;
+        justify-content: space-evenly;
+
+        .social-link {
+          font-size: 2rem;
+        }
+      }
+    }
+
+  }// .main-footer
+}

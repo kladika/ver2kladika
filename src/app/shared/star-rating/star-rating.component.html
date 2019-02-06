@@ -1,0 +1,3 @@
+<div class="rating-icon" *ngFor="let r of range; let i = index" (click)="rate(i + 1)">
+  <i class="fa" [ngClass]="value === undefined ? (r === 1 ? 'fa-star' : (r === 2 ? 'fa-star-half-o' : 'fa-star-o')) : (value > i ? (value < i+1 ? 'fa-star-half-o' : 'fa-star') : 'fa-star-o')"></i>
+</div>

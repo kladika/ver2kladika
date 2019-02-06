@@ -1,0 +1,163 @@
+<div class="container">
+  <div class="row no-gutters d-none d-lg-flex store-categories">
+    <div class="col-3">
+      <div class="dropdown store-categories-dropdown" dropdown>
+        <button dropdownToggle type="button" class="btn btn-block dropdown-toggle categories-dropdown-btn" aria-controls="dropdown-basic">
+          <span>Categories</span>
+        </button>
+        <ul *dropdownMenu class="dropdown-menu categories-dropdown-menu" role="menu" aria-labelledby="button-basic">
+          <li role="menuitem">
+            <a class="dropdown-item" [routerLink]="['/products/category', 'men']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">MEN</a>
+          </li>
+          <li role="menuitem">
+            <a class="dropdown-item" [routerLink]="['/products/category', 'women']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">WOMEN</a>
+          </li>
+          <li role="menuitem">
+            <a class="dropdown-item" [routerLink]="['/products/category', 'kids']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">KIDS</a>
+          </li>
+          <li class="divider dropdown-divider"></li>
+          <li role="menuitem">
+            <a class="dropdown-item" [routerLink]="['/products/category', 'outdoors']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">OUTDOORS</a>
+          </li>
+          <li role="menuitem">
+            <a class="dropdown-item" [routerLink]="['/products/category', 'running']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">RUNNING</a>
+          </li>
+          <li role="menuitem">
+            <a class="dropdown-item" [routerLink]="['/products/category', 'golf']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">GOLF</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-9">
+      <ul class="nav nav-fill store-highlighted-categories">
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" [routerLink]="['/products/tag', 'new-collection']">New Collection</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" [routerLink]="['/products/tag', 'summer']">Summer</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" [routerLink]="['/products/tag', 'sale']">SALE</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" [routerLink]="['/products']">ALL</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <app-breadcrumbs></app-breadcrumbs>
+  <div class="row d-flex d-lg-none products-listing-heading">
+    <div class="col-12 listing-title-wrapper">
+      <h3 class="listing-title" [attr.data-listing-length]="products.length">{{ (category_slug) ? category_slug + ' Category products' : ((tag_slug) ? tag_slug + ' Tag products' : 'All products') }}</h3>
+    </div>
+  </div>
+  <div class="row no-gutters">
+    <div class="d-none d-lg-flex col-lg-3 card products-filters-outer">
+      <form [formGroup]="productsFiltersForm" class="products-taxonomy-filters">
+        <!-- Color filter -->
+        <div class="form-group taxonomy-color-filter">
+          <h3 class="taxonomy-filter-title">COLOR</h3>
+          <div class="row color-options-wrapper" formGroupName="color_filter">
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_fc9961" appColorRadioBtn="#fc9961"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_007bff" appColorRadioBtn="#007bff"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_6610f2" appColorRadioBtn="#6610f2"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_6f42c1" appColorRadioBtn="#6f42c1"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_e83e8c" appColorRadioBtn="#e83e8c"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_dc3545" appColorRadioBtn="#dc3545"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_ffc107" appColorRadioBtn="#ffc107"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_28a745" appColorRadioBtn="#28a745"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_20c997" appColorRadioBtn="#20c997"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_17a2b8" appColorRadioBtn="#17a2b8"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_343a40" appColorRadioBtn="#343a40"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_61fcc5" appColorRadioBtn="#61fcc5"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_fc61ad" appColorRadioBtn="#fc61ad"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_ffffff" appColorRadioBtn="#ffffff"></label>
+            </div>
+            <div class="color-option">
+              <label class="btn color-btn" btnCheckbox formControlName="_6c757d" appColorRadioBtn="#6c757d"></label>
+            </div>
+          </div>
+        </div>
+        <!-- Size filter -->
+        <div class="form-group taxonomy-size-filter">
+          <h3 class="taxonomy-filter-title">SIZE</h3>
+          <div class="row size-options-wrapper" formGroupName="size_filter">
+            <div class="size-option">
+              <label class="btn size-btn" btnCheckbox formControlName="_7">7</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnCheckbox formControlName="_7_5">7.5</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnCheckbox formControlName="_8">8</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnCheckbox formControlName="_8_5">8.5</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnCheckbox formControlName="_9">9</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnCheckbox formControlName="_9_5">9.5</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnCheckbox formControlName="_10">10</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnCheckbox formControlName="_10_5">10.5</label>
+            </div>
+            <div class="size-option">
+              <label class="btn size-btn" btnCheckbox formControlName="_11">11</label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-12 col-lg-9 products-listing-outer">
+      <div class="row d-none d-lg-flex products-listing-filters">
+        <div class="col-12 col-lg-6 col-xl-7">
+          <app-search-bar class="products-search-bar"></app-search-bar>
+        </div>
+        <div class="col-12 col-lg-5 offset-lg-1 col-xl-4 offset-xl-1">
+          <div class="form-group row no-gutters products-sort-filter">
+            <label class="col col-form-label sort-label" [attr.for]="'sortBy'">Sort by: </label>
+            <div class="col sort-options">
+              <select class="form-control" [id]="'sortBy'">
+                <option>Newest</option>
+                <option>Recommended</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-products-listing [items]="products"></app-products-listing>
+    </div>
+  </div>
+</div>

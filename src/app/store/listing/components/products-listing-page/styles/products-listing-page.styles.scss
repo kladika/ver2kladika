@@ -1,0 +1,242 @@
+@import '../../../../../styles/_shared';
+@import '../../../../../styles/common/color-chooser-input.styles';
+@import '../../../../../styles/common/size-chooser-input.styles';
+
+app-products-listing-page {
+  display: block;
+  min-height: calc(100vh - #{ $navbar-height });
+  padding-bottom: 6rem;
+
+  .store-categories {
+    padding: 2rem 0 0;
+
+    .store-categories-dropdown {
+      .categories-dropdown-btn {
+        @include fill-button($white, $aquamarina);
+        border: none;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+
+      .categories-dropdown-menu {
+        width: 100%;
+        background: lighten($aquamarina, 5%);
+        margin: 0px;
+        border-radius: 0px;
+
+        .dropdown-item {
+          opacity: 0.8;
+          color: $white;
+          font-size: 1rem;
+          font-weight: 500;
+          letter-spacing: 0.07rem;
+
+          &:hover,
+          &.active {
+            opacity: 1;
+            background: transparent;
+          }
+        }
+
+        .dropdown-divider {
+          border-color: darken($aquamarina, 10%);
+        }
+      }// .categories-dropdown-menu
+    }// .store-categories-dropdown
+
+    .store-highlighted-categories {
+      height: 100%;
+      align-items: center;
+      background: $darkgrey;
+
+      .nav-item {
+        .nav-link {
+          opacity: 0.9;
+          color: $grey-3;
+          font-size: 1rem;
+          font-weight: 500;
+          letter-spacing: 0.07rem;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+
+        &.active {
+          .nav-link {
+            opacity: 1;
+            color: $white;
+          }
+        }
+      }
+    }// .store-highlighted-categories
+
+  }// .store-categories
+
+  // This heading is only visible below lg viewports
+  .products-listing-heading {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    .listing-title-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      // Line decoration
+      &::before,
+      &::after {
+        content: '';
+        background: $black;
+        height: 2px;
+        flex: 1 1 auto;
+      }
+
+      // No left decoration
+      &::before {
+        content: unset;
+      }
+
+      .listing-title {
+        color: $black;
+        font-size: 1.2rem;
+        font-weight: 900;
+        letter-spacing: 0.4rem;
+        text-align: center;
+        margin: 0px;
+        padding: 0px 30px;
+
+        // No left decoration
+        &:first-child {
+          padding-left: 0px;
+        }
+        &[data-listing-length] {
+          &::after {
+            content: '(' attr(data-listing-length) ')';
+            font-size: 0.8rem;
+            font-weight: 400;
+            opacity: 0.6;
+            padding-left: 0.5rem;
+            vertical-align: middle;
+          }
+        }
+      }
+
+      @include media-breakpoint-down(sm) {
+        &::before,
+        &::after {
+          background: $white;
+        }
+
+        .listing-title {
+          color: $white;
+          font-size: 1.6rem;
+        }
+      }
+    }// .listing-title-wrapper
+
+    @include media-breakpoint-down(sm) {
+      margin-bottom: 40px;
+      background: $black;
+    }
+  }// .products-listing-heading
+
+  .products-listing-outer {
+    padding-left: 30px !important;
+
+    @include media-breakpoint-down(md) {
+      // Below lg viewport the taxonomy sidebar is hidden
+      padding-left: 0px !important;
+    }
+
+    .products-listing-filters {
+      margin-bottom: 1rem;
+
+      .products-search-bar {
+        color: $grey;
+        border-color: $grey;
+        background-color: $white;
+
+        .search-bar-input {
+          &:focus {
+            color: $darkgrey;
+          }
+        }
+      }// .products-search-bar
+
+      .products-sort-filter {
+        margin-bottom: 0px;
+        height: 100%;
+
+        .sort-label {
+          padding-right: 1rem;
+          max-width: fit-content;
+          color: $grey;
+        }
+
+        .sort-options {
+          flex-grow: 2;
+
+          select.form-control {
+            height: 100%;
+            border-width: 2px;
+            border-color: $grey;
+            color: $grey;
+
+            &:focus {
+              color: $darkgrey;
+            }
+          }
+        }
+      }// products-sort-filter
+    }// .products-listing-filters
+  }// .products-listing-outer
+
+  .products-filters-outer {
+    background: rgba($grey-3, 0.4);
+
+    .products-taxonomy-filters {
+      margin: 0 1rem;
+
+      .taxonomy-filter-title {
+        color: $white;
+        background: $purple;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        // Account for parent's (.card) border-left-width (1px) and border-right-width (1px)
+        margin-left: calc(-1rem - 1px);
+        margin-right: calc(-1rem - 1px);
+        padding: 0.5rem 0;
+        padding-left: calc(1rem + 1px);
+        padding-right: calc(1rem + 1px);
+      }
+
+      & > :first-child {
+        .taxonomy-filter-title {
+          border-radius: 0.25rem 0.25rem 0 0;
+        }
+      }
+
+      .taxonomy-color-filter {
+        @include color-chooser-input(4);
+      }
+
+      .taxonomy-size-filter {
+        @include size-chooser-input(2);
+
+        .size-option {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}

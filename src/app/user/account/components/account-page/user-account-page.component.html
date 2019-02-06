@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="account-title">My account</h1>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-12 col-lg-3">
+      <div class="row no-gutters account-sidebar">
+        <div class="col-12 col-sm-6 col-lg-12">
+          <div class="user-info">
+            <div class="user-img-outer">
+              <app-preload-image class="user-img-wrapper" [classes]="'user-img'" [ratio]="{w:1, h:1}" [src]="user.image" alt="User image" title="User image">
+              </app-preload-image>
+            </div>
+            <span class="user-name">{{ user.name }}</span>
+            <span class="user-handle">@{{ user.handle }}</span>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 col-lg-12">
+          <div class="list-group list-group-flush user-actions">
+            <a class="list-group-item list-group-item-action" tabindex="-1">
+              Profile
+            </a>
+            <a class="list-group-item list-group-item-action active" tabindex="-1" [ngClass]="{'disabled' : !(user.orders && user.orders.length)}">
+              My Orders
+              <span class="badge badge-pill" *ngIf="user.orders && user.orders.length">{{ user.orders.length }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main content -->
+    <div class="col-12 col-lg-9">
+      <h4 class="no-orders-message" *ngIf="!(user.orders && user.orders.length)">There are no order associated with your account</h4>
+      <!-- User Orders -->
+      <div class="user-orders" *ngIf="(user.orders && user.orders.length)">
+        <h2 class="orders-title">ORDERS</h2>
+        <div class="table-responsive">
+          <table class="table table-hover orders-table-list">
+            <caption>User orders list</caption>
+            <thead>
+              <tr>
+                <th scope="col">
+                  Order number
+                </th>
+                <th scope="col">
+                  Date
+                </th>
+                <th class="text-center" scope="col">
+                  Preview
+                </th>
+                <th scope="col">
+                  Total
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="order-item" *ngFor="let order of user.orders">
+                <th scope="row">#{{ order.number }}</th>
+                <td>
+                  {{ order.date }}
+                </td>
+                <td class="order-products-preview" [ngClass]="{ 'big-order': (order.preview.length > 3) }">
+                  <div class="order-products-list">
+                    <div class="order-product-item" *ngFor="let productImage of order.preview | slice:0:3" [attr.data-products-length]="(order.preview.length - 3)">
+                      <app-preload-image class="product-img-wrapper" [classes]="'product-img'" [ratio]="{w:1, h:1}" [src]="productImage" alt="Order product image" title="Order product image">
+                      </app-preload-image>
+                    </div>
+                  </div>
+                </td>
+                <td class="font-weight-bold">
+                  {{ order.total }}
+                </td>
+                <td class="text-center">
+                  <a class="btn btn-sm order-item-action-btn" tabindex="-1">Details</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- / User Orders -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,222 @@
+@import '../../../../../styles/_shared';
+
+app-user-account-page {
+  display: block;
+  min-height: calc(100vh - #{ $navbar-height });
+  padding-bottom: 6rem;
+
+  .account-title {
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+    color: $black;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 0.25rem;
+  }
+
+  .account-sidebar {
+    border: 2px solid $grey;
+
+    @include media-breakpoint-down(md) {
+      margin-bottom: 2rem;
+    }
+
+    .user-info {
+      padding: 1rem;
+      text-align: center;
+
+      .user-img-outer {
+        margin: 0 20% 1rem;
+
+        .user-img-wrapper {
+          border-radius: 50%;
+
+          .user-img {
+            width: 100%;
+            border-radius: 50%;
+          }
+        }
+      }
+
+      .user-name {
+        display: block;
+        color: $black;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .user-handle {
+        display: block;
+        color: $grey;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+    }// .user-info
+
+    .user-actions.list-group {
+      .list-group-item {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .badge {
+          color: $white;
+          background-color: $grey;
+        }
+
+        &.active {
+          background-color: $grey;
+          border-color: $grey;
+          color: $white;
+
+          .badge {
+            color: $grey;
+            background-color: $white;
+          }
+        }
+
+        &.disabled {
+          opacity: 0.6;
+        }
+      }
+
+      .list-group-item-action {
+        color: $grey;
+        font-size: 1.1rem;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }// .user-actions
+  }// .account-sidebar
+
+  .no-orders-message {
+    color: $grey;
+    text-align: center;
+  }
+
+  .user-orders {
+    .orders-title {
+      background-color: $purple;
+      color: $white;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.15rem;
+      margin-bottom: 2rem;
+      padding: 1rem;
+    }// .orders-title
+
+    .orders-table-list {
+      border-collapse: separate;
+      border-spacing: 0 0.75rem;
+
+      caption {
+        color: $grey;
+        font-size: 0.8rem;
+      }
+
+      thead {
+        th {
+          border: none;
+          vertical-align: middle;
+
+          color: $grey;
+          font-size: 0.9rem;
+          font-weight: 600;
+          padding-bottom: 0;
+          padding-top: 0;
+        }
+      }// thead
+
+      .order-item {
+        color: $grey;
+        border-color: $darkgrey;
+
+        &:hover {
+          color: $darkgrey;
+          border-color: $black;
+        }
+
+        th,
+        td {
+          vertical-align: middle;
+          border-bottom-width: 1px;
+          border-bottom-style: solid;
+          border-top-width: 1px;
+          border-top-style: solid;
+          border-color: inherit;
+          padding: 0.75rem;
+
+          &:first-child {
+            border-left-width: 1px;
+            border-left-style: solid;
+          }
+
+          &:last-child {
+            border-right-width: 1px;
+            border-right-style: solid;
+          }
+        }// th, td
+
+        .order-products-preview {
+          // Take into consideration:
+          //    - The <td> paddingleft and padding right (0.75rem *2)
+          //    - Three product images (50px * 3), two of which have 'margin-left: -2rem' (2rem * 2)
+          min-width: calc(((0.75rem * 2) + (50px * 3)) - (2rem * 2));
+
+          .order-products-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .order-product-item {
+            width: 50px;
+
+            &:not(:first-child) {
+              margin-left: -2rem;
+            }
+
+            .product-img-wrapper {
+              border-radius: 50%;
+
+              .product-img {
+                width: 100%;
+                border-radius: 50%;
+              }
+            }
+          }
+
+          &.big-order {
+            .order-product-item:last-child {
+              position: relative;
+
+              &::after {
+                content: '+' attr(data-products-length);
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: rgba($purple, .7);
+                color: $white;
+                font-weight: 500;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 50px;
+              }
+            }
+          }// .order-products-preview.big-order
+        }// .order-products-preview
+
+        .order-item-action-btn {
+          @include link-button($purple);
+          font-size: 0.9rem;
+          letter-spacing: normal;
+        }
+
+      }// .order-item
+    }// .orders-table-list
+  }// .user-orders
+}

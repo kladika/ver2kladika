@@ -1,0 +1,16 @@
+@import '../../../styles/_shared';
+
+app-fill-container {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  .container-content-wrapper {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+  }
+}

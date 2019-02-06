@@ -1,0 +1,24 @@
+// Colors
+$black: #1e1e1e;
+$darkgrey: #3f3f3f;
+$white: #FFFFFF;
+$grey: #9e9e9e;
+$grey-2: #d7d7d7;
+$grey-3: #e5e5e5;
+
+$aquamarina: #50e3c2;
+$purple: #9013fe;
+$cherry: #f82c51;
+$red: #d6183a;
+$gold: #fcb300;
+$facebook-blue: #3b5998;
+
+// Sizes
+$navbar-height: $nav-link-height + $nav-link-padding-y * 2;
+
+// Preload Image / Background Image
+$preload-image-bg: rgba(darken($white, 10), .25);
+
+// Preload Image / Background Image
+$spinner-size: 28px;
+$spinner-color: $grey;

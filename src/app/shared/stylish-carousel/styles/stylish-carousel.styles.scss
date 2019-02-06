@@ -1,0 +1,89 @@
+@import '../../../styles/_shared';
+
+app-stylish-carousel {
+  display: block;
+
+  // ngx-carousel
+  carousel {
+    display: block;
+
+    .carousel-indicators,
+    .carousel-control {
+      display: none;
+    }
+  }
+
+  .carousel-wrapper-col {
+    @include media-breakpoint-down(md) {
+      padding-bottom: 30px;
+    }
+  }
+
+  .custom-controls-wrapper-col {
+    padding-top: 30px;
+
+    @include media-breakpoint-down(md) {
+      padding-top: 0px;
+      padding-bottom: 30px;
+    }
+  }
+
+  // Our custom controls
+  .carousel-custom-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .carousel-control {
+      background: transparent;
+      opacity: 0.6;
+
+      &:hover {
+        opacity: 1;
+
+        &.prev-control-btn {
+          opacity: 0.8;
+        }
+      }
+
+      &.prev-control-btn {
+        opacity: 0.4;
+
+        .control-arrow-illustration {
+          transform: rotate(180deg) scale(0.5);
+        }
+      }
+    }// .carousel-control
+
+    .carousel-slide-indicators {
+      .slide-indicator {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 300;
+        width: 40px;
+
+        &.active-slide {
+          opacity: 0.6;
+        }
+
+        &.last-slide {
+          font-weight: 500;
+
+          &::before {
+            content: '/';
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 1;
+            width: 10px;
+            position: absolute;
+            left: -5px;
+            top: calc(50% - 0.5em);
+            opacity: 0.6;
+          }
+        }
+      }
+    }// .carousel-slide-indicators
+  }// .carousel-custom-controls
+}

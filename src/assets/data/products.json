@@ -1,0 +1,185 @@
+{
+  "items": [
+    {
+      "title": "Black & White Sneakers",
+      "slug": "black-white-sneakers",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-1.jpg",
+        "/assets/imgs/products/product-2.jpg",
+        "/assets/imgs/products/product-3.jpg",
+        "/assets/imgs/products/product-4.jpg"
+      ],
+      "price": 55,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 3.5,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "women",
+      "tag": "new-collection"
+    },
+    {
+      "title": "Black Mamba",
+      "slug": "black-mamba",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-2.jpg",
+        "/assets/imgs/products/product-3.jpg",
+        "/assets/imgs/products/product-4.jpg",
+        "/assets/imgs/products/product-1.jpg"
+      ],
+      "price": 94,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 4,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "men",
+      "tag": "new-collection",
+      "new": true
+    },
+    {
+      "title": "DuoDarnel",
+      "slug": "duodarnel",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-3.jpg",
+        "/assets/imgs/products/product-4.jpg",
+        "/assets/imgs/products/product-1.jpg",
+        "/assets/imgs/products/product-2.jpg"
+      ],
+      "price": 30,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 3,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "running",
+      "tag": "new-collection"
+    },
+    {
+      "title": "Airperez",
+      "slug": "airperez",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-4.jpg",
+        "/assets/imgs/products/product-1.jpg",
+        "/assets/imgs/products/product-2.jpg",
+        "/assets/imgs/products/product-3.jpg"
+      ],
+      "price": 90,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 4,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "kids",
+      "tag": "new-collection"
+    },
+    {
+      "title": "Redcheeta",
+      "slug": "redcheeta",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-5.jpg",
+        "/assets/imgs/products/product-6.jpg",
+        "/assets/imgs/products/product-7.jpg",
+        "/assets/imgs/products/product-8.jpg"
+      ],
+      "price": 55,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 3.5,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "running",
+      "tag": "summer",
+      "sale": true
+    },
+    {
+      "title": "Amphibo",
+      "slug": "amphibo",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-6.jpg",
+        "/assets/imgs/products/product-7.jpg",
+        "/assets/imgs/products/product-8.jpg",
+        "/assets/imgs/products/product-5.jpg"
+      ],
+      "price": 94,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 4.5,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "outdoors",
+      "tag": "summer",
+      "sale": true
+    },
+    {
+      "title": "Spacex",
+      "slug": "spacex",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-7.jpg",
+        "/assets/imgs/products/product-8.jpg",
+        "/assets/imgs/products/product-5.jpg",
+        "/assets/imgs/products/product-6.jpg"
+      ],
+      "price": 30,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 4,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "outdoors",
+      "tag": "summer",
+      "sale": true
+    },
+    {
+      "title": "Tealtom",
+      "slug": "tealtom",
+      "description": "Black Mamba is the finest shoe around, able to murder the crazy 88 by stepping where it hurts. Enjoy our free worldwide shipping today.",
+      "images": [
+        "/assets/imgs/products/product-8.jpg",
+        "/assets/imgs/products/product-5.jpg",
+        "/assets/imgs/products/product-6.jpg",
+        "/assets/imgs/products/product-7.jpg"
+      ],
+      "price": 90,
+      "colors": ["black", "aquamarina", "white", "purple", "pink"],
+      "sizes": [10, 10.5, 11, 12.5],
+      "rate": {
+        "overall": 2,
+        "size": 43,
+        "comfort": 76,
+        "quality": 78
+      },
+      "category": "women",
+      "tag": "summer",
+      "banner": "20% OFF"
+    }
+  ]
+}

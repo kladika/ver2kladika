@@ -1,0 +1,41 @@
+{
+  "name": "Mariah Spears",
+  "handle": "massqueen",
+  "image": "/assets/imgs/products/product-1.jpg",
+  "orders": [
+    {
+      "number": "9948883020",
+      "date": "1/4/2018",
+      "total": 59.99,
+      "preview": [
+        "/assets/imgs/products/product-2.jpg",
+        "/assets/imgs/products/product-3.jpg"
+      ]
+    },
+    {
+      "number": "9948883043",
+      "date": "4/6/2017",
+      "total": 179.99,
+      "preview": [
+        "/assets/imgs/products/product-2.jpg",
+        "/assets/imgs/products/product-3.jpg",
+        "/assets/imgs/products/product-4.jpg"
+      ]
+    },
+    {
+      "number": "9942344325",
+      "date": "8/26/2016",
+      "total": 319.99,
+      "preview": [
+        "/assets/imgs/products/product-1.jpg",
+        "/assets/imgs/products/product-2.jpg",
+        "/assets/imgs/products/product-3.jpg",
+        "/assets/imgs/products/product-4.jpg",
+        "/assets/imgs/products/product-5.jpg",
+        "/assets/imgs/products/product-6.jpg",
+        "/assets/imgs/products/product-7.jpg",
+        "/assets/imgs/products/product-8.jpg"
+      ]
+    }
+  ]
+}

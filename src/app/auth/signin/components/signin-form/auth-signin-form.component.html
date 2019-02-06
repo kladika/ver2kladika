@@ -1,0 +1,11 @@
+<form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="auth-form">
+  <div class="form-group">
+    <label [attr.for]="'email'" class="auth-form-label">EMAIL</label>
+    <input type="email" class="form-control auth-form-input" formControlName="email" [id]="'email'" placeholder="johndoe@gmail.com">
+  </div>
+  <div class="form-group">
+    <label [attr.for]="'password'" class="auth-form-label">PASSWORD</label>
+    <input type="password" class="form-control auth-form-input" formControlName="password" [id]="'password'" placeholder="&#10033; &#10033; &#10033; &#10033; &#10033;">
+  </div>
+  <button type="submit" class="btn btn-block auth-form-submit-btn" [disabled]="!signinForm.valid">LOG IN</button>
+</form>

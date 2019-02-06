@@ -1,0 +1,24 @@
+<div class="auth-page">
+  <div class="container">
+    <div class="row auth-form-wrapper">
+      <div class="col-12 col-lg-7 col-xl-6">
+        <h1 class="auth-title">Welcome back!</h1>
+        <app-auth-signin-form [redirectUrl]="'/user'"></app-auth-signin-form>
+        <div class="auth-alt-options">
+          <a class="btn btn-link secondary-call-to-action-btn" [routerLink]="['/create-account']">
+            Don't have an Account yet?
+          </a>
+          <a class="btn btn-link secondary-call-to-action-btn" [routerLink]="['/recover-password']">
+            Forgot password?
+          </a>
+        </div>
+        <div class="auth-form-divider">
+          <span class="divider-text">OR</span>
+        </div>
+        <button class="btn btn-block social-alternative-btn" (click)="redirectAccount()">
+          SIGN IN WITH FACEBOOK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

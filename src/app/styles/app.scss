@@ -1,0 +1,9 @@
+@import '_shared';
+
+html {
+  // Default font-size = 16px => (16px * 0.625) = 10px
+  // This way you can do your calculations way faster:
+  //    ex: font-size: 1.6rem; /* 10 * 1.6 = 16px */
+  // But you would have to adjust many stuff as the default for bootstrap is 1rem = 16px
+  // font-size: 62.5%; /* Sets up the Base 10 stuff */
+}

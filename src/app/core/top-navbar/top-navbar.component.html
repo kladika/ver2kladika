@@ -1,0 +1,57 @@
+<nav class="main-navbar navbar navbar-expand-lg" [ngClass]="{'not-home': !router.isActive('/', true), 'expanded': !navbarCollapsed}" >
+  <a class="navbar-brand" [routerLink]="['/']" (click)="navbarCollapsed = true">
+    <img class="brand-logo" alt="ANGULAR STORE" title="KLADIKA" src="/assets/imgs/kladikalogo1.png">
+  </a>
+  <button (click)="navbarCollapsed = !navbarCollapsed" class="navbar-toggler" type="button" [attr.aria-expanded]="!navbarCollapsed" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon">
+      <span *ngIf="navbarCollapsed" class="fa fa-bars"></span>
+      <span *ngIf="!navbarCollapsed" class="fa fa-times"></span>
+    </span>
+  </button>
+
+  <div class="navbar-items-wrapper navbar-collapse collapse" role="navigation" [collapse]="navbarCollapsed">
+    <ul class="navbar-items-list navbar-nav ml-auto">
+      <li class="nav-search-bar-item d-lg-none">
+        <app-search-bar class="store-search-bar"></app-search-bar>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="navbarCollapsed = true">
+        <a class="nav-link" [routerLink]="['/']">
+          HOME
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" (click)="navbarCollapsed = true">
+        <a class="nav-link" [routerLink]="['/about']">
+          ABOUT
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" (click)="navbarCollapsed = true">
+        <a class="nav-link" [routerLink]="['/products']">
+          SHOP
+        </a>
+      </li>
+      <li class="nav-divider d-lg-none">
+        <hr class="divider-line">
+      </li>
+      <li class="nav-item user-action-item" *ngIf="(loggedInObservable | async) === false" routerLinkActive="active" (click)="navbarCollapsed = true">
+        <a class="nav-link" [routerLink]="['/create-account']">
+          Join
+        </a>
+      </li>
+      <li class="nav-item user-action-item" *ngIf="(loggedInObservable | async) === false" routerLinkActive="active" (click)="navbarCollapsed = true">
+        <a class="nav-link" [routerLink]="['/login']">
+          Login
+        </a>
+      </li>
+      <li class="nav-item user-action-item" *ngIf="(loggedInObservable | async)" routerLinkActive="active" (click)="navbarCollapsed = true">
+        <a class="nav-link" [routerLink]="['/user']">
+          Account
+        </a>
+      </li>
+      <li class="nav-item user-action-item" *ngIf="(loggedInObservable | async)" (click)="navbarCollapsed = true">
+        <a class="nav-link" (click)="logout()">
+          Logout
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
