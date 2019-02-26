@@ -1,5 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-user-account-page',
@@ -9,10 +10,31 @@ import { ActivatedRoute } from '@angular/router';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class UserAccountPageComponent {
+export class UserAccountPageComponent implements OnInit {
   user: any = {};
 
-  constructor(private route: ActivatedRoute) {
-    this.user = route.snapshot.data['data'].userData;
+  constructor(private route: ActivatedRoute,
+              private authService: AuthService) {
   }
+
+
+  ngOnInit() {
+    this.getprofile();
+  }
+
+  getprofile() {
+    const profile = JSON.parse(localStorage.getItem('user_profile'));
+    if (profile) {
+      this.user = profile;
+    } else {
+      this.authService.get_profile()
+        .subscribe(res => {
+          this.user = res;
+        },
+        error => {
+          console.log(error);
+        }
+        );
+      }
+    }
 }
