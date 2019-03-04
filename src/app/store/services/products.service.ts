@@ -68,7 +68,6 @@ export class StoreProductsService {
   }
 
   getProductsByCategory(cat_id: string): Promise<any> {
-    console.log(cat_id);
     const newurl = `${this.http_service.apiURL}api/v1/products/?type=` + cat_id;
     return new Promise((resolve, reject) => {
       this.http.get(newurl, {headers: this.http_service.headers})

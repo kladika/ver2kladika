@@ -2,8 +2,8 @@ import { HttpResponse } from '@angular/common/http';
 
 export interface CacheEntry {
     url: string;
-    response: HttpResponse<any>
+    response: HttpResponse<any>;
     entryTime: number;
 }
 
-export const MAX_CACHE_AGE = 90000; // in milliseconds
+export const MAX_CACHE_AGE = 600000; // in milliseconds

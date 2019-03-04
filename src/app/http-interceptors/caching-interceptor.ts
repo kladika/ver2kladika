@@ -26,6 +26,6 @@ export class CachingInterceptor implements HttpInterceptor {
         );
     }
     private isRequestCachable(req: HttpRequest<any>) {
-        return (req.method === 'GET') && (req.url.indexOf(this.http_service.apiURL) > -1);
+        return (req.method === 'GET');
     }
 }
