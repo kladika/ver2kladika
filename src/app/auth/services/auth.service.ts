@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { HttpServiceService } from '../../http-service/http-service.service';
 import { catchError, tap, map, mergeMap } from 'rxjs/operators';
 import * as moment from 'moment';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Injectable()
 export class AuthService implements CanActivate {
@@ -40,11 +41,14 @@ export class AuthService implements CanActivate {
   isAuthenticated(): boolean {
     const auth = JSON.parse(localStorage.getItem('user_token'));
     const exp_time = localStorage.getItem('exp_date');
+    // console.log(auth);
+    // console.log(exp_time);
     if (auth !== null && exp_time !== null && !this.call_check) {
       this.call_check = true;
       if (moment().format() > moment(exp_time).format()) {
-        this.http_service.token_refresh().subscribe(res => {this.userAuthenticated = true; }, error => {this.clear_login_details(); });
         // tslint:disable-next-line:max-line-length
+        // this.http_service.token_refresh().subscribe(res => { this.userAuthenticated = true;}, error => { this.clear_login_details(); });
+        console.log(this.userAuthenticated);
       } else if (moment(exp_time).subtract(1, 'hours').format() < moment().format() && moment(exp_time).format() > moment().format()) {
         this.http_service.token_refresh().subscribe(res => { this.userAuthenticated = true; }, error => { this.clear_login_details(); });
       } else if (moment().format() < moment(exp_time).format()) {
@@ -61,6 +65,7 @@ export class AuthService implements CanActivate {
       localStorage.removeItem('user_token');
       localStorage.removeItem('exp_date');
     }
+    console.log(this.userAuthenticated);
     return this.userAuthenticated;
   }
 

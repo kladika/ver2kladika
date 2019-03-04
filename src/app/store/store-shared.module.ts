@@ -8,9 +8,11 @@ import { ProductsListingComponent } from './listing/components/products-listing/
 
 import { StoreBannersService } from './services/banners.service';
 import { StoreProductsService } from './services/products.service';
+import { RemoveSpacesPipe } from '../custom-pipe/remove-spaces.pipe';
 
 @NgModule({
   declarations: [
+    RemoveSpacesPipe,
     ProductsListingComponent
   ],
   imports: [

@@ -20,7 +20,7 @@ export const storeListingRoutes = [
     }
   },
   {
-    path: 'category/:slug',
+    path: 'category/:id/:slug',
     component: ProductsListingPageComponent,
     resolve: {
       data: ProductsListingPageResolver
@@ -37,7 +37,7 @@ export const storeListingRoutes = [
 
 @NgModule({
   declarations: [
-    ProductsListingPageComponent
+    ProductsListingPageComponent,
   ],
   imports: [
     RouterModule.forChild(storeListingRoutes),
