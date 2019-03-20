@@ -15,10 +15,15 @@
         <app-preload-image [classes]="'item-img'" [ratio]="{w:1, h:1}" [src]="item.images[0]" [alt]="item.title" [title]="item.title"></app-preload-image>
       </div>
       <h4 class="item-title">{{ item.title }}</h4>
-      <span class="item-category">{{ item.category }}</span>
+      <div class="item-subsection">
+        <span class="item-category">{{ item.category }}</span>
+        <span class="item-price"> KES {{ item.price }}</span>
+      </div>
+      
       <div class="item-relevant-info">
-        <span class="item-price">$ {{ item.price }}</span>
-        <app-star-rating class="item-rating" [ngModel]="item.rate.overall" max="5" readOnly="true"></app-star-rating>
+        <span class="item-button"><a href="#" class="btn btn-primary btn-sm disabled" tabindex="-1" role="button" aria-disabled="true" color="#001d42">Mystyle</a></span>
+        <a href="#" class="btn btn-secondary btn-sm disabled" tabindex="-1" role="button" aria-disabled="true">Buy Now</a>
+        
       </div>
     </a>
   </div>
