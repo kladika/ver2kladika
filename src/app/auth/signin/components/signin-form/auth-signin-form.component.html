@@ -1,4 +1,5 @@
 <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="auth-form">
+  <p *ngIf='error' style="color:red">Email or Password miss match. Please Try again.</p>
   <div class="form-group">
     <label [attr.for]="'email'" class="auth-form-label">EMAIL</label>
     <input type="email" class="form-control auth-form-input" formControlName="email" [id]="'email'" placeholder="johndoe@gmail.com">
@@ -9,3 +10,4 @@
   </div>
   <button type="submit" class="btn btn-block auth-form-submit-btn" [disabled]="!signinForm.valid">LOG IN</button>
 </form>
+

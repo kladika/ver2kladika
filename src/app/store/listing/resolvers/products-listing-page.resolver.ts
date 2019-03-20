@@ -15,24 +15,26 @@ export class ProductsListingPageResolver implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     let category_slug;
     let tag_slug;
+    let cat_id;
 
     if (route.url[0] && (route.url[0].path === 'tag')) {
       tag_slug = route.params['slug'];
     } else if (route.url[0] && (route.url[0].path === 'category')) {
       category_slug = route.params['slug'];
+      cat_id = route.params['id'];
     }
 
     return new Promise((resolve, reject) => {
       if (category_slug) {
         // If the user is requesting products under a specific category
         forkJoin(
-          this.productsService.getProductsByCategory(category_slug)
+          this.productsService.getProductsByCategory(cat_id)
         ).subscribe((data: any) => {
           resolve({
-            products: data[0],
+            products: data,
             breadcrumbs: [
               { url: '/', label: 'HOME' },
-              { url: '/products/category/' + category_slug, label: category_slug }
+              { url: '/products/category/' + cat_id + category_slug, label: category_slug }
             ],
             seo: {
               title: category_slug + ' Category Products Listing',
@@ -65,7 +67,7 @@ export class ProductsListingPageResolver implements Resolve<any> {
           this.productsService.getProducts()
         ).subscribe((data: any) => {
           resolve({
-            products: data[0].items,
+            products: data,
             breadcrumbs: [
               { url: '/', label: 'HOME' },
               { url: '/products', label: 'ALL products' }

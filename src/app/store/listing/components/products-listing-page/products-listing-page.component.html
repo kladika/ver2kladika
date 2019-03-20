@@ -6,14 +6,12 @@
           <span>Categories</span>
         </button>
         <ul *dropdownMenu class="dropdown-menu categories-dropdown-menu" role="menu" aria-labelledby="button-basic">
-          <li role="menuitem">
-            <a class="dropdown-item" [routerLink]="['/products/category', 'men']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">MEN</a>
-          </li>
-          <li role="menuitem">
-            <a class="dropdown-item" [routerLink]="['/products/category', 'women']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">WOMEN</a>
-          </li>
-          <li role="menuitem">
-            <a class="dropdown-item" [routerLink]="['/products/category', 'kids']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">KIDS</a>
+          <li role="menuitem" *ngFor="let cat of categories">
+            <!-- <p class="divider dropdown-divider"> </p> -->
+            <a class="dropdown-item" [routerLink]="['/products/category', cat.id, cat.name]" routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact: true}">{{cat.name | uppercase}}</a>
+            <!-- <a class="dropdown-item" *ngFor="let sub of cat.sub_types" [routerLink]="['/products/category', 'outdoors']" 
+            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" style="padding-left:30px">{{sub.name}}</a> -->
           </li>
           <li class="divider dropdown-divider"></li>
           <li role="menuitem">

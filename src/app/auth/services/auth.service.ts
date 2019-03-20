@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Location } from '@angular/common';
+import { HttpServiceService } from '../../http-service/http-service.service';
+import { catchError, tap, map, mergeMap } from 'rxjs/operators';
+import * as moment from 'moment';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Injectable()
 export class AuthService implements CanActivate {
   loggedInSubject: BehaviorSubject<boolean>;
-
-  // MOCK:  Define a variable to store the user state. Don't use in production.
-  //        You should call your own stateless API instead (and no need to store the user state)
   userAuthenticated = false;
+  call_check = false;
+  public token = new HttpHeaders({ 'Content-type': 'application/x-www-form-urlencoded' });
 
-  constructor(private router: Router,private http:HttpClient) {
+  constructor(private router: Router,
+              private http: HttpClient,
+              private location: Location,
+              private http_service: HttpServiceService) {
+    // this.token_refresh();
     this.loggedInSubject = new BehaviorSubject<boolean>(this.isAuthenticated());
   }
 
@@ -27,59 +35,122 @@ export class AuthService implements CanActivate {
   loggedInObservable(): Observable<boolean> {
     return this.loggedInSubject.asObservable();
   }
-  mysignup(data){
-    return this.http.post("http://localhost:8000/api/users/",data)
-  }
+
+
 
   isAuthenticated(): boolean {
-    // EXAMPLE: Call your API and check if the user is authenticated
-    // return this.userApi.isAuthenticated();
-
-    // MOCK: Don't use in production. Call your own API (as the example above)
+    const auth = JSON.parse(localStorage.getItem('user_token'));
+    const exp_time = localStorage.getItem('exp_date');
+    // console.log(auth);
+    // console.log(exp_time);
+    if (auth !== null && exp_time !== null && !this.call_check) {
+      this.call_check = true;
+      if (moment().format() > moment(exp_time).format()) {
+        // tslint:disable-next-line:max-line-length
+        // this.http_service.token_refresh().subscribe(res => { this.userAuthenticated = true;}, error => { this.clear_login_details(); });
+        console.log(this.userAuthenticated);
+      } else if (moment(exp_time).subtract(1, 'hours').format() < moment().format() && moment(exp_time).format() > moment().format()) {
+        this.http_service.token_refresh().subscribe(res => { this.userAuthenticated = true; }, error => { this.clear_login_details(); });
+      } else if (moment().format() < moment(exp_time).format()) {
+        this.userAuthenticated = true;
+      } else {
+        this.userAuthenticated = false;
+        localStorage.removeItem('user_token');
+        localStorage.removeItem('exp_date');
+      }
+    } else if (this.call_check) {
+      this.userAuthenticated = true;
+    } else {
+      this.userAuthenticated = false;
+      localStorage.removeItem('user_token');
+      localStorage.removeItem('exp_date');
+    }
+    console.log(this.userAuthenticated);
     return this.userAuthenticated;
   }
 
-  signup(name: string, email: string, password: string, newsletter: boolean): Observable<any> {
-    // EXAMPLE: Call your API and create the user in the database
-    // return this.userApi.create({ email: email, password: password, name: name, newsletter: newsletter });
-
-    // MOCK: Simulate the observable returned by the API
-    const signupObservable = of(true);
-    return signupObservable;
+  clear_login_details() {
+    localStorage.removeItem('user_token');
+    localStorage.removeItem('exp_date');
+    localStorage.removeItem('user_profile');
+    this.userAuthenticated = false;
   }
 
-  signin(email: string, password: string, rememberMe: boolean): Observable<any> {
-    // EXAMPLE: Call your API and signin the user
-    // const signinObservable = this.userApi.login({ email: email, password: password }, false, rememberMe);
-
-    // MOCK: Simulate the observable returned by the API
-    const signinObservable = of(true);
-    signinObservable.subscribe(
-      res => {
-        this.userAuthenticated = res;
-        this.loggedInSubject.next(res);
-      }
-    );
-
-    return signinObservable;
+  signup(data: any): any {
+    const newurl = `${this.http_service.apiURL}api/v1/users/`;
+    const httpOptions = { headers: this.http_service.headers};
+    return this.http
+      .post(newurl, data, httpOptions)
+      .pipe(map(res => {
+        const user_data = {'username': data.username, 'password': data.password};
+        return this.get_token(user_data);
+      }));
   }
 
-  logout(): Observable<any> {
-    // EXAMPLE: Call your API and logout the user
-    // const logoutObservable = this.userApi.logout();
-
-    // MOCK: Simulate the observable returned by the API
-    const logoutObservable = of(false);
-    logoutObservable.subscribe(
-      res => {
-        this.userAuthenticated = res;
-        this.loggedInSubject.next(res);
-      },
-      err => {
-        console.log('Logout ERROR', err);
-      }
-    );
-
-    return logoutObservable;
+  get_token(data): any {
+    const newurl = `${this.http_service.apiURL}o/token/`;
+    const httpOptions = { headers: this.token};
+    return this.http
+      .post<any>(newurl, data, httpOptions)
+      .pipe(mergeMap(res => {
+        // save token
+        localStorage.setItem('user_token', JSON.stringify(res));
+        localStorage.setItem('exp_date', moment().add(res.expires_in / 3600, 'hours').format());
+        return this.get_profile();
+      }));
   }
+
+  token_refresh(): any {
+    const auth = JSON.parse(localStorage.getItem('user_token'));
+    // tslint:disable-next-line:max-line-length
+    const data = `grant_type=${'refresh_token'}&refresh_token=${auth.refresh_token}&client_id=${'lxM7IDGzgY43lAwFLK6QLr2nazEpgEwK5upShF8y'}`;
+    const newurl = `${this.http_service.apiURL}o/token/`;
+    const httpOptions = { headers: this.token };
+    return this.http
+      .post(newurl, data, httpOptions)
+      .pipe((map(res => {
+        console.log(res);
+        localStorage.setItem('user_token', JSON.stringify(res));
+        return res;
+      })));
+  }
+
+  get_profile(): any {
+    const auth = JSON.parse(localStorage.getItem('user_token'));
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + auth.access_token });
+    const newurl = `${this.http_service.apiURL}api/v1/users/me/profile/`;
+    return this.http
+      .get(newurl, { headers: headers })
+      .pipe(map(res => {
+        localStorage.setItem('user_profile', JSON.stringify(res));
+        return res;
+      }));
+  }
+
+
+  logout(): any {
+    const auth = JSON.parse(localStorage.getItem('user_token'));
+    const data = `token=${auth.access_token}&client_id=${'lxM7IDGzgY43lAwFLK6QLr2nazEpgEwK5upShF8y'}`;
+    const newurl = `${this.http_service.apiURL}o/revoke_token/`;
+    const httpOptions = { headers: this.token };
+    return this.http
+      .post(newurl, data, httpOptions)
+      .pipe(
+        map(res => {
+          console.log(res);
+          return res;
+        })
+      );
+  }
+
+  forgot_password(data): any {
+    const newurl = `${this.http_service.apiURL}api/v1/users/forgot-password`;
+    const httpOptions = { headers: this.http_service.headers };
+    return this.http
+      .post(newurl, data, httpOptions)
+      .pipe(
+        catchError(this.http_service.handleError())
+      );
+  }
+
 }

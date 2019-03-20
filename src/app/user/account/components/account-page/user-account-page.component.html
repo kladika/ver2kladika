@@ -11,11 +11,13 @@
         <div class="col-12 col-sm-6 col-lg-12">
           <div class="user-info">
             <div class="user-img-outer">
-              <app-preload-image class="user-img-wrapper" [classes]="'user-img'" [ratio]="{w:1, h:1}" [src]="user.image" alt="User image" title="User image">
-              </app-preload-image>
+              <app-preload-image *ngIf=(user.image) class="user-img-wrapper" [classes]="'user-img'" [ratio]="{w:1, h:1}" [src]="user.image" 
+                alt="User image" title="User image"></app-preload-image>
+              <app-preload-image *ngIf=(!user.image) class="user-img-wrapper" [classes]="'user-img'" [ratio]="{w:1, h:1}" [src]="user.profile_image"
+                 alt="User image" title="User image"></app-preload-image>
             </div>
-            <span class="user-name">{{ user.name }}</span>
-            <span class="user-handle">@{{ user.handle }}</span>
+            <span class="user-name">{{ user.first_name }} {{user.last_name}}</span>
+            <span class="user-handle">{{ user.email }}</span>
           </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-12">

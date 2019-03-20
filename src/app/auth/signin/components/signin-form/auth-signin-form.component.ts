@@ -1,9 +1,10 @@
-import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 
 import { AuthService } from '../../../services/auth.service';
-
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-auth-signin-form',
   templateUrl: './auth-signin-form.component.html',
@@ -12,16 +13,18 @@ import { AuthService } from '../../../services/auth.service';
   ],
   encapsulation: ViewEncapsulation.None
 })
-export class AuthSigninFormComponent {
+export class AuthSigninFormComponent implements OnInit {
   signinForm: FormGroup;
   // Where to redirect the user after successful login
   @Input() redirectUrl: string;
   @Output() success = new EventEmitter();
+  error: string;
+  loggedInObservable: Observable<boolean>;
 
   constructor(
     public formBuilder: FormBuilder,
     public router: Router,
-    private authService: AuthService
+    private authService: AuthService,
   ) {
     this.signinForm = formBuilder.group({
       email: new FormControl('', Validators.compose([
@@ -32,26 +35,44 @@ export class AuthSigninFormComponent {
     });
   }
 
-  onSubmit(): void {
-    this.doSignin(this.signinForm.value.email, this.signinForm.value.password, true);
+  ngOnInit() {
+    this.loggedInObservable = this.authService.loggedInObservable();
+    // console.log(this.loggedInObservable);
+
+    if (this.loggedInObservable) {
+      this.router.navigate(['/user']);
+    }
   }
 
-  doSignin(email: string, password: string, rememberMe: boolean): void {
-    this.authService.signin(email, password, rememberMe)
+  onSubmit(): void {
+    this.error = '';
+    const data = {
+      'email': this.signinForm.value.email,
+      'password': this.signinForm.value.password
+    };
+    const date = new Date();
+    this.Signin(data);
+  }
+
+  Signin(data): void {
+    // tslint:disable-next-line:max-line-length
+    const body = `username=${data.email}&password=${data.password}&grant_type=${'password'}&client_id=${'lxM7IDGzgY43lAwFLK6QLr2nazEpgEwK5upShF8y'}`;
+    // console.log(body);
+    this.authService.get_token(body)
     .subscribe(
       res => {
-        this.success.emit(true);
+        console.log(res);
         this.signinForm.reset();
-
-        if (this.redirectUrl) {
-          setTimeout(() => {
-            return this.router.navigate([this.redirectUrl]);
-          }, 500);
-        }
+        this.success.emit(true);
+        this.router.navigate(['/user']);
       },
-      err => {
-        this.success.emit(false);
+      error => {
+          this.error = error.statusText;
+          this.success.emit(false);
       }
     );
   }
+
+
+
 }

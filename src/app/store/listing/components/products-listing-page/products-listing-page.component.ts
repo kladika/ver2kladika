@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { StoreProductsService } from '../../../services/products.service';
 
 @Component({
   selector: 'app-products-listing-page',
@@ -15,13 +16,17 @@ export class ProductsListingPageComponent implements OnInit {
   productsFiltersForm: FormGroup;
   category_slug;
   tag_slug;
+  categories: any;
 
   constructor(
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private productService: StoreProductsService
   ) {}
 
   ngOnInit(): void {
+    const categories = JSON.parse(sessionStorage.getItem('categories'));
+    categories ? this.categories = categories : this.get_product_types();
     this.route.data.subscribe(routeData => {
       const listing_path = this.route.snapshot.url[0]; // this can either be 'tag' or 'category'
 
@@ -31,8 +36,8 @@ export class ProductsListingPageComponent implements OnInit {
         this.category_slug = this.route.snapshot.params['slug'];
       }
 
-      this.products = this.route.snapshot.data['data'].products;
-    });
+      this.products = this.route.snapshot.data['data'].products[0].results;
+    }, error => {console.log(error); } );
 
     const color_options_group = new FormGroup({
       _fc9961: new FormControl(false),
@@ -68,5 +73,16 @@ export class ProductsListingPageComponent implements OnInit {
       color_filter: color_options_group,
       size_filter: size_options_group
     });
+  }
+
+  get_product_types() {
+    this.productService.get_product_types()
+      .subscribe(res => {
+        this.categories = res.results;
+        sessionStorage.setItem('categories', JSON.stringify(res.results));
+      },
+      error => {
+        console.log(error);
+      });
   }
 }

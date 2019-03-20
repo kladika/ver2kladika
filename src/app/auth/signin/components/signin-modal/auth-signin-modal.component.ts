@@ -22,6 +22,7 @@ export class AuthSigninModalComponent {
   }
 
   signinSuccess(success) {
+    console.log(success);
     if (success) {
       this.modalRef.hide();
     }
