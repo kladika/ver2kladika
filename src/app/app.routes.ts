@@ -12,7 +12,7 @@ export const rootRoutes: Routes = [
     loadChildren: './store/listing/store-listing.module#StoreListingModule'
   },
   {
-    path: 'product/:slug',
+    path: 'product/:id/:slug',
     loadChildren: './store/product/store-product.module#StoreProductModule'
   },
   // AUTH

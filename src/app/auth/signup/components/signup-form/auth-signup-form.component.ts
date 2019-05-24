@@ -24,7 +24,8 @@ export class AuthSignupFormComponent {
     private authService: AuthService
   ) {
     this.signupForm = formBuilder.group({
-      name: new FormControl('', Validators.required),
+      first_name: new FormControl('', Validators.required),
+      last_name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.compose([
         Validators.email,
         Validators.required
@@ -36,34 +37,46 @@ export class AuthSignupFormComponent {
   }
 
   onSubmit(): void {
-    this.mySignup(this.signupForm.value.name, this.signupForm.value.email,
-      this.signupForm.value.password, this.signupForm.value.newsletter);
-  }
-  mySignup(name: string, email: string, password: string, newsletter: boolean){
-    let data:any={username:email,email:email,first_name:name,password:password,phonenumber:"0727278273",location:"south b",occupation:"self emplyed"}
-    this.authService.mysignup(data).subscribe(res=>{
-      console.log("Account created ",res)
-    },error=>{
-      console.log("An error occured ",error)
-    })
+    const data = {
+      'first_name': this.signupForm.value.first_name,
+      'last_name': this.signupForm.value.last_name,
+      'username': this.signupForm.value.email,
+      'email': this.signupForm.value.email,
+      'newsletter': this.signupForm.value.newsletter,
+      'password': this.signupForm.value.password
+    };
+    this.Signup(data);
   }
 
-  doSignup(name: string, email: string, password: string, newsletter: boolean): void {
-    this.authService.signup(name, email, password, newsletter)
-    .subscribe(
-      res => {
-        this.success.emit(true);
-        this.signupForm.reset();
-
-        if (this.redirectUrl) {
-          setTimeout(() => {
-            return this.router.navigate([this.redirectUrl]);
-          }, 500);
-        }
-      },
-      err => {
-        console.log('There was an ERROR while creating the account');
-      }
+  Signup(data) {
+    this.authService.signup(data).subscribe(res => {
+      this.success.emit(true);
+      this.signupForm.reset();
+      this.router.navigateByUrl('login');
+    },
+    error => {
+      console.log(error);
+      this.success.emit(false);
+    }
     );
   }
+
+  // doSignup(data): void {
+  //   this.authService.signup(data)
+  //   .subscribe(
+  //     res => {
+  //       this.success.emit(true);
+  //       this.signupForm.reset();
+
+  //       // if (this.redirectUrl) {
+  //       //   setTimeout(() => {
+  //       //     return this.router.navigate([this.redirectUrl]);
+  //       //   }, 500);
+  //       // }
+  //     },
+  //     err => {
+  //       console.log('There was an ERROR while creating the account');
+  //     }
+  //   );
+  // }
 }
