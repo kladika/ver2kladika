@@ -11,9 +11,7 @@
 
   <div class="navbar-items-wrapper navbar-collapse collapse" role="navigation" [collapse]="navbarCollapsed">
     <ul class="navbar-items-list navbar-nav ml-auto">
-      <li class="nav-search-bar-item d-lg-none">
-        <app-search-bar class="store-search-bar"></app-search-bar>
-      </li>
+      
       <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="navbarCollapsed = true">
         <a class="nav-link" [routerLink]="['/']">
           HOME
@@ -31,6 +29,20 @@
       </li>
       <li class="nav-divider d-lg-none">
         <hr class="divider-line">
+      </li>
+
+     <!-- <div class= "search-box">
+      <li class="nav-item user-action-item" *ngIf="(loggedInObservable | async) === false" routerLinkActive="active" (click)="navbarCollapsed = true">
+        <input class="search-txt" type="text" placeholder="Search..." />
+        <a class="search-btn" href="#">
+          <i class="/assets/imgs/home/search-btn.jpg"></i>
+        </a>
+      </li>
+    </div>-->
+
+      <li class="nav-search-bar-item d-block"> <!--<lg-none>-->
+        <i class="/assets/imgs/home/search-btn.jpg"></i>
+        <app-search-bar class="store-search-bar"></app-search-bar>
       </li>
       <li class="nav-item user-action-item" *ngIf="(loggedInObservable | async) === false" routerLinkActive="active" (click)="navbarCollapsed = true">
         <a class="nav-link" [routerLink]="['/create-account']">
