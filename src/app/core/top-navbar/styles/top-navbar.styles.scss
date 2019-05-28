@@ -108,7 +108,7 @@ app-top-navbar {
     }
 
     .nav-search-bar-item {
-      margin-bottom: 40px;
+      margin-bottom: 20px;
 
       .store-search-bar {
         color: $white;
@@ -116,8 +116,11 @@ app-top-navbar {
 
         .search-bar-input {
           background-color: transparent;
-          padding: 1rem 1.25rem;
-          font-size: 1.3rem;
+          padding: 7px;
+          font-size: 0.7rem;
+          border-radius:40px;
+
+              
 
           &:focus {
             background-color: $white;
@@ -136,6 +139,44 @@ app-top-navbar {
         flex: 0 0 100%;
         max-width: 100%;
       }
+    }
+
+    .search-box{
+      position: absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+      background:#2f3640;
+      height:40px;
+      border-radius:40px;
+      padding:10px;
+    }
+    .search-box:hover > .search-txt{
+      width:240px;
+      padding:0 6px;
+    }
+    .search-btn{
+      color:white;
+      float:right;
+      width:40px;
+      height:40px;
+      boarder-radius:50%;
+      background:2f3640;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .search-txt{
+      boarder:none;
+      background:none;
+      outline:none;
+      float:left;
+      padding:0;
+      color:white;
+      font-size: 16px;
+      transition:0.4s;
+      line-height:40px;
+      width:0px;
     }
 
     .nav-divider {

@@ -57,7 +57,21 @@
   </div>
 </div>
 
-<!-- <section class="highlighted-products-section">
+<!--<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div> -->
+
+<!--<section class="highlighted-products-section">
   <div class="container carousel-container">
     <app-stylish-carousel class="products-carousel">
       <carousel [showIndicators]="false" [noWrap]="true">
@@ -82,7 +96,21 @@
       </carousel>
     </app-stylish-carousel>
   </div>
-</section> -->
+</section>-->
+<section class="container storefront-products-listing-section">
+  <div class="row products-listing-heading">
+    <div class="col-12 listing-title-wrapper">
+      <h3 class="listing-title">NEW PRODUCTS</h3>
+    </div>
+  </div>
+  <app-products-listing [items]="newCollectionProducts"></app-products-listing>
+  <div class="row products-listing-heading">
+    <div class="col-12 listing-title-wrapper">
+      <h3 class="listing-title">SUMMER SALE</h3>
+    </div>
+  </div>
+  <app-products-listing [items]="summerSaleProducts"></app-products-listing>
+</section>
 
 <section class="container storefront-attributes-section">
   <div class="row how-it-works-heading">
@@ -127,20 +155,7 @@
 
 </section>
 
-<section class="container storefront-products-listing-section">
-  <div class="row products-listing-heading">
-    <div class="col-12 listing-title-wrapper">
-      <h3 class="listing-title">NEW COLLECTION</h3>
-    </div>
-  </div>
-  <app-products-listing [items]="newCollectionProducts"></app-products-listing>
-  <div class="row products-listing-heading">
-    <div class="col-12 listing-title-wrapper">
-      <h3 class="listing-title">SUMMER SALE</h3>
-    </div>
-  </div>
-  <app-products-listing [items]="summerSaleProducts"></app-products-listing>
-</section>
+
 
 <div class="storefront-call-to-action-banner">
   <div class="container">
