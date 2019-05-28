@@ -28,6 +28,6 @@ export class LoggingInterceptor implements HttpInterceptor {
         );
     }
     private logDetails(msg: string) {
-        console.log(msg);
+        // console.log(msg);
     }
 }

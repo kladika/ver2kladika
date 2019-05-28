@@ -15,10 +15,7 @@ import { rootRoutes } from './app.routes';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { RemoveSpacesPipe } from './custom-pipe/remove-spaces.pipe';
 import { CacheMapService } from './cache-service/cache-map.service';
-import { CachingInterceptor } from './http-interceptors/caching-interceptor';
-import { LoggingInterceptor } from './http-interceptors/logging-interceptor';
 import { httpInterceptorProviders } from './http-interceptors';
 import { StoreProductsService } from './store/services/products.service';
 
@@ -46,7 +43,6 @@ import { StoreProductsService } from './store/services/products.service';
     StoreProductsService,
     httpInterceptorProviders,
     CacheMapService,
-    { provide: Cache, useClass: CacheMapService },
   ]
 })
 export class AppModule {}

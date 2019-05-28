@@ -3,11 +3,10 @@ import { HttpInterceptor, HttpRequest, HttpResponse, HttpHandler } from '@angula
 import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { CacheMapService } from '../cache-service/cache-map.service';
-import { HttpServiceService } from '../http-service/http-service.service';
 
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
-    constructor(private cache: CacheMapService, private http_service: HttpServiceService) { }
+    constructor(private cache: CacheMapService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         if (!this.isRequestCachable(req)) {
