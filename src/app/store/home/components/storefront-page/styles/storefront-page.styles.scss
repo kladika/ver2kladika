@@ -337,11 +337,53 @@ app-home-storefront-page {
     }// .products-listing-heading
   }// .storefront-products-listing-section
 
+
   .storefront-call-to-action-banner {
     @include call-to-action-banner();
   }
 
   .storefront-attributes-section {
     @include store-attributes();
+
+    .how-it-works-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        // Line decoration
+        &::before,
+        &::after {
+          content: '';
+          background: $black;
+          height: 2px;
+          flex: 1 1 auto;
+        }
+      }
+
+
+      .listing-how-title {
+            color: $black;
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 0.4rem;
+            text-align: center;
+            margin: 0px;
+            padding: 0px 30px;
+      }
+      @include media-breakpoint-down(sm) {
+            &::before,
+            &::after {
+              background: $white;
+            }
+
+            .listing-how-title {
+              color: $white;
+              font-size: 1.6rem;
+            }
+          }
+      .attribute-copy{
+      color:$black;
+      font-weight: 900;
+      }
   }
 }// app-home-storefront-page

@@ -26,7 +26,7 @@
 <div class="container">
   <div class="row storefront-categories">
     <div class="col-12 col-lg-6 store-main-category-col">
-      <app-background-image class="store-main-category women-category" [src]="'/assets/imgs/home/women1.png'">
+      <app-background-image class="store-main-category women-category" [src]="'/assets/imgs/home/women30.jpg'">
         <app-fill-container [ratio]="{w:4, h:3}">
           <a class="main-category-anchor" [routerLink]="['/products/category', 'women']">
             <button type="button" class="btn main-category-btn">
@@ -47,9 +47,9 @@
         </app-fill-container>
       </app-background-image>
     </div>
-    <div class="col-6 col-lg-3 store-secondary-category-col">
+    <div class="col-sm-6 col-lg-3 store-secondary-category-col">
       <div class="store-secondary-category">
-        <app-fill-container [ratio]="{w:2, h:1}">
+        <app-fill-container [ratio]="{w:1, h:0.5}">
           <a class="btn secondary-category-btn" [routerLink]="['/products/category', 'kids']">
             KIDS
           </a>
@@ -114,15 +114,22 @@
 </section> -->
 
 <section class="container storefront-attributes-section">
+  <div class="row how-it-works-heading">
+    <div class="col-12 how-it-works-wrapper">
+      <h3 class="listing-how-title">HOW IT WORKS</h3>
+    </div>
+  </div>
+ 
+
   <div class="row storefront-attributes-wrapper">
     <div class="col-12 col-sm-6 col-md-4 storefront-attribute">
       <div class="attribute-illustration-wrapper">
         <app-preload-image [classes]="'attribute-illustration'" [ratio]="{w:1, h:1}" src="/assets/imgs/home/cart.svg" alt="Cart" title="Cart">
         </app-preload-image>
       </div>
-      <h4 class="attribute-title">YOUR CART</h4>
+      <h4 class="attribute-title">BUY NOW</h4>
       <p class="attribute-copy">
-        This is a descriptive text of what this title may be trying to say
+        Click the Buy Now button to add to your cart, click Mystyle button if you like the product and would definitely wear it.
       </p>
     </div>
     <div class="col-12 col-sm-6 col-md-4 storefront-attribute">
@@ -130,9 +137,9 @@
         <app-preload-image [classes]="'attribute-illustration'" [ratio]="{w:1, h:1}" src="/assets/imgs/home/truck.svg" alt="Truck" title="Truck">
         </app-preload-image>
       </div>
-      <h4 class="attribute-title">FREE DELIVERY</h4>
+      <h4 class="attribute-title">DELIVERY</h4>
       <p class="attribute-copy">
-        This is a descriptive text of what this title may be trying to say
+        We'll deliver the product wherever you are, whether it's home or office.
       </p>
       </div>
     <div class="col-12 col-sm-6 col-md-4 storefront-attribute">
@@ -140,12 +147,13 @@
         <app-preload-image [classes]="'attribute-illustration'" [ratio]="{w:1, h:1}" src="/assets/imgs/home/wallet.svg" alt="Wallet" title="Wallet">
         </app-preload-image>
       </div>
-      <h4 class="attribute-title">PAYMENT OPTIONS</h4>
-      <p class="attribute-copy">
-        This is a descriptive text of what this title may be trying to say
-      </p>
+      <h4 class="attribute-title">PAY IF IT FITS</h4>
+      <h4 class="attribute-copy">
+        Once delivered, try on the product and see if it's your liking & only pay when it fits.
+      </h4>
     </div>
   </div>
+
 </section>
 
 <section class="container storefront-products-listing-section">
@@ -165,15 +173,66 @@
 
 <div class="storefront-call-to-action-banner">
   <div class="container">
+      <h2> SHOP BY BRAND</h2>
     <div class="row">
-      <div class="col-12 col-lg-8 offset-lg-2">
-        <h2 class="banner-title">LET IT BE AWESOME</h2>
+
+      <div class="col-md-4">
+
+
+        <div><!-- Label -->
+          <div class="label">
+            <img src="/assets/imgs/home/men1.jpg" class="rounded-circle z-depth-1-half" width="100" height="50%">
+          </div>
+
+          <!-- Excerpt -->
+          <div class="excerpt">
+
+            <!-- Brief -->
+            <div class="brief">
+              <a class="name">C&K FASHIONS</a> 
+            
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="label">
+            <img src="/assets/imgs/home/men1.jpg" class="rounded-circle z-depth-1-half" width="100" height="50%">
+          </div>
+
+          <!-- Excerpt -->
+          <div class="excerpt">
+
+            <!-- Brief -->
+            <div class="brief">
+              <a class="name">C&K FASHIONS</a> 
+            
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="label">
+            <img src="/assets/imgs/home/men1.jpg" class="rounded-circle z-depth-1-half" width="100" height="50%">
+          </div>
+
+          <!-- Excerpt -->
+          <div class="excerpt">
+
+            <!-- Brief -->
+            <div class="brief">
+              <a class="name">C&K FASHIONS</a> 
+            
+            </div>
+         </div>
+       </div>
+
+        <!--<h2 class="banner-title">LET IT BE AWESOME</h2>
         <p class="banner-copy">
           Take control of you business with this fashion template.  Remember, YOU have
           the power to make your business what you want it to be. You CAN create a
           business you love.
         </p>
-        <span class="banner-tagline">Tomorrow starts today!</span>
+        <!--<span class="banner-tagline">Tomorrow starts today!</span>
         <div class="row banner-actions">
           <div class="col-12 col-md-6 action-col">
             <button type="button" class="btn call-to-action-outline-btn">SUBSCRIBE</button>
@@ -181,10 +240,117 @@
           <div class="col-12 col-md-6 action-col">
             <button type="button" class="btn call-to-action-fill-btn">SHOP NOW</button>
           </div>
-        </div>
+        </div>-->
       </div>
+
+      <div class="col-md-4">
+
+
+        <div><!-- Label -->
+          <div class="label">
+            <img src="/assets/imgs/home/men1.jpg" class="rounded-circle z-depth-1-half" width="100" height="50%">
+          </div>
+
+          <!-- Excerpt -->
+          <div class="excerpt">
+
+            <!-- Brief -->
+            <div class="brief">
+              <a class="name">C&K FASHIONS</a> 
+            
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="label">
+            <img src="/assets/imgs/home/men1.jpg" class="rounded-circle z-depth-1-half" width="100" height="50%">
+          </div>
+
+          <!-- Excerpt -->
+          <div class="excerpt">
+
+            <!-- Brief -->
+            <div class="brief">
+              <a class="name">C&K FASHIONS</a> 
+            
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="label">
+            <img src="/assets/imgs/home/men1.jpg" class="rounded-circle z-depth-1-half" width="100" height="50%">
+          </div>
+
+          <!-- Excerpt -->
+          <div class="excerpt">
+
+            <!-- Brief -->
+            <div class="brief">
+              <a class="name">C&K FASHIONS</a> 
+            
+            </div>
+         </div>
+       </div>
+     </div>
+
+        
+    <div class="col-md-4">
+       
+
+
+        <div><!-- Label -->
+          <div class="label">
+            <img src="/assets/imgs/home/men1.jpg" class="rounded-circle z-depth-1-half" width="100" height="50%">
+          </div>
+
+          <!-- Excerpt -->
+          <div class="excerpt">
+
+            <!-- Brief -->
+            <div class="brief">
+              <a class="name">C&K FASHIONS</a> 
+            
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="label">
+            <img src="/assets/imgs/home/men1.jpg" class="rounded-circle z-depth-1-half" width="100" height="50%">
+          </div>
+
+          <!-- Excerpt -->
+          <div class="excerpt">
+
+            <!-- Brief -->
+            <div class="brief">
+              <a class="name">C&K FASHIONS</a> 
+            
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="label">
+            <img src="/assets/imgs/home/men1.jpg" class="rounded-circle z-depth-1-half" width="100" height="50%">
+          </div>
+
+          <!-- Excerpt -->
+          <div class="excerpt">
+
+            <!-- Brief -->
+            <div class="brief">
+              <a class="name">C&K FASHIONS</a> 
+            
+            </div>
+         </div>
+       </div>
+      
     </div>
   </div>
 </div>
+
+
+
 
 

@@ -14,11 +14,19 @@
         <span class="item-artifact favorite-artifact fa fa-heart-o"></span>
         <app-preload-image [classes]="'item-img'" [ratio]="{w:1, h:1}" [src]="item.image" [alt]="item.name" [title]="item.name"></app-preload-image>
       </div>
+
       <h4 class="item-title">{{ item.name }}</h4>
-      <span class="item-category">{{ item.type_name }}</span>
+      <div class="item-subsection">
+        <span class="item-category">{{ item.type_name }}</span>
+        <span class="item-price">KES {{ item.regular_price }}</span>
+      </div>
+    
       <div class="item-relevant-info">
-        <span class="item-price">$ {{ item.regular_price }}</span>
+        <span class="item-button"><a href="#" class="btn btn-primary btn-sm disabled" tabindex="-1" role="button" aria-disabled="true" color="#001d42">Mystyle</a></span>
+        <a href="#" class="btn btn-secondary btn-sm disabled" tabindex="-1" role="button" aria-disabled="true">Buy Now</a>
         <!-- <app-star-rating class="item-rating" [ngModel]="item.rate.overall" max="5" readOnly="true"></app-star-rating> -->
+
+      
       </div>
     </a>
   </div>
