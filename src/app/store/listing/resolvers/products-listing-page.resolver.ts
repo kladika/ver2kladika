@@ -34,7 +34,7 @@ export class ProductsListingPageResolver implements Resolve<any> {
             products: data,
             breadcrumbs: [
               { url: '/', label: 'HOME' },
-              { url: '/products/category/' + cat_id + category_slug, label: category_slug }
+              { url: '/products/category/' + cat_id + '/' + category_slug, label: category_slug }
             ],
             seo: {
               title: category_slug + ' Category Products Listing',
@@ -42,44 +42,44 @@ export class ProductsListingPageResolver implements Resolve<any> {
               keywords: 'your, product, listing, keywords'
             }
           });
-        });
-      } else if (tag_slug) {
-        // If the user is requesting products under a specific tag
-        forkJoin(
-          this.productsService.getProductsByTag(tag_slug)
-        ).subscribe((data: any) => {
-          resolve({
-            products: data[0],
-            breadcrumbs: [
-              { url: '/', label: 'HOME' },
-              { url: '/products/tag/' + tag_slug, label: tag_slug }
-            ],
-            seo: {
-              title: tag_slug + ' Tag Products Listing',
-              description: 'Your product listing description',
-              keywords: 'your, product, listing, keywords'
-            }
-          });
-        });
-      } else {
-        // Default option, when the user requests all products
-        forkJoin(
-          this.productsService.getProducts()
-        ).subscribe((data: any) => {
-          resolve({
-            products: data,
-            breadcrumbs: [
-              { url: '/', label: 'HOME' },
-              { url: '/products', label: 'ALL products' }
-            ],
-            seo: {
-              title: 'Products Listing',
-              description: 'Your product listing description',
-              keywords: 'your, product, listing, keywords'
-            }
-          });
-        });
-      }
+        }); }
+      // } else if (tag_slug) {
+      //   // If the user is requesting products under a specific tag
+      //   forkJoin(
+      //     this.productsService.getProductsByTag(tag_slug)
+      //   ).subscribe((data: any) => {
+      //     resolve({
+      //       products: data[0],
+      //       breadcrumbs: [
+      //         { url: '/', label: 'HOME' },
+      //         { url: '/products/tag/' + tag_slug, label: tag_slug }
+      //       ],
+      //       seo: {
+      //         title: tag_slug + ' Tag Products Listing',
+      //         description: 'Your product listing description',
+      //         keywords: 'your, product, listing, keywords'
+      //       }
+      //     });
+      //   });
+      // } else {
+      //   // Default option, when the user requests all products
+      //   forkJoin(
+      //     this.productsService.getProducts()
+      //   ).subscribe((data: any) => {
+      //     resolve({
+      //       products: data,
+      //       breadcrumbs: [
+      //         { url: '/', label: 'HOME' },
+      //         { url: '/products', label: 'ALL products' }
+      //       ],
+      //       seo: {
+      //         title: 'Products Listing',
+      //         description: 'Your product listing description',
+      //         keywords: 'your, product, listing, keywords'
+      //       }
+      //     });
+      //   });
+      // }
     });
   }
 }

@@ -16,12 +16,13 @@ export class ProductPageResolver implements Resolve<any> {
         this.productsService.getProduct(product_slug)
         .then(
           (product: any) => {
+            console.log(product),
             resolve({
               product: product,
               breadcrumbs: [
                 { url: '/', label: 'HOME' },
-                { url: '/products/category/' + product.category, label: product.category },
-                { url: '/product/' + product.slug, label: product.title }
+                { url: '/product/category/2/' + product.category, label: product.category },
+                { url: '/product/2/' + product.title, label: product.title }
               ],
               seo: {
                 title: 'Product name',

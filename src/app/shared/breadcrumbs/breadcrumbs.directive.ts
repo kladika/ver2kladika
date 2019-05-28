@@ -34,7 +34,7 @@ export class BreadcrumbsDirective implements OnInit, OnDestroy {
       )
       .subscribe((event) => {
         if (event['data'] && event['data'].breadcrumbs) {
-          // console.log(event['data'].breadcrumbs)
+          console.log(event['data'].breadcrumbs)
           this.breadcrumbsService.setBreadcrumbs(event['data'].breadcrumbs);
         } else {
           // Empty breadcrumbs
