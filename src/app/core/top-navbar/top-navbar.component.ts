@@ -32,9 +32,6 @@ export class TopNavbarComponent implements OnInit {
         .subscribe(
           res => {
             this.authService.clear_login_details();
-            // localStorage.removeItem('user_token');
-            // localStorage.removeItem('exp_date');
-            // localStorage.removeItem('user_profile');
             this.authService.userAuthenticated = false;
             this.authService.loggedInSubject.next(false);
             setTimeout(() => {

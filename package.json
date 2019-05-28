@@ -46,7 +46,7 @@
     "intersection-observer": "^0.5.0",
     "moment": "^2.24.0",
     "ngx-bootstrap": "^3.0.1",
-    "rxjs": "^6.2.1",
+    "rxjs": "6.0.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

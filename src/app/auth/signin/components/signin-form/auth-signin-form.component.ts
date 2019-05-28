@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
 
 import { AuthService } from '../../../services/auth.service';
 import { Observable } from 'rxjs';
@@ -64,8 +63,8 @@ export class AuthSigninFormComponent implements OnInit {
         console.log(res);
         this.signinForm.reset();
         this.success.emit(true);
-        this.authService.userAuthenticated = true;
-        this.authService.loggedInSubject.next(true);
+        // this.authService.userAuthenticated = true;
+        // this.authService.loggedInSubject.next(true);
         this.router.navigate(['/user']);
       },
       error => {
