@@ -25,56 +25,27 @@
 <!-- Store categories -->
 <div class="container">
   <div class="row storefront-categories">
-    <div class="col-12 col-lg-6 store-main-category-col">
+    <div class="col-12 col-lg-6 store-main-category-col" *ngFor="let cat of categories.slice(0,2)">
       <app-background-image class="store-main-category women-category" [src]="'/assets/imgs/home/women30.jpg'">
         <app-fill-container [ratio]="{w:4, h:3}">
-          <a class="main-category-anchor" [routerLink]="['/products/category', 'women']">
+          <a class="main-category-anchor" [routerLink]="['/products/category', cat.id, cat.name]">
             <button type="button" class="btn main-category-btn">
-              SHOP WOMEN
+              SHOP {{cat.name}}
             </button>
           </a>
         </app-fill-container>
       </app-background-image>
     </div>
-    <div class="col-12 col-lg-6 store-main-category-col">
-      <app-background-image class="store-main-category men-category" [src]="'/assets/imgs/home/men1.jpg'">
-        <app-fill-container [ratio]="{w:4, h:3}">
-          <a class="main-category-anchor" [routerLink]="['/products/category', 'men']">
-            <button type="button" class="btn main-category-btn">
-              SHOP MEN
-            </button>
-          </a>
-        </app-fill-container>
-      </app-background-image>
-    </div>
-    <div class="col-sm-6 col-lg-3 store-secondary-category-col">
+    <div class="col-sm-6 col-lg-3 store-secondary-category-col" *ngFor="let cat of categories.slice(2)">
       <div class="store-secondary-category">
         <app-fill-container [ratio]="{w:1, h:0.5}">
-          <a class="btn secondary-category-btn" [routerLink]="['/products/category', 'kids']">
-            KIDS
+          <a class="btn secondary-category-btn" [routerLink]="['/products/category', cat.id, cat.name]">
+            {{cat.name}}
           </a>
         </app-fill-container>
       </div>
     </div>
-    <div class="col-6 col-lg-3 store-secondary-category-col">
-      <div class="store-secondary-category">
-        <app-fill-container [ratio]="{w:2, h:1}">
-          <a class="btn secondary-category-btn" [routerLink]="['/products/category', 'outdoors']">
-            OUTDOORS
-          </a>
-        </app-fill-container>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3 store-secondary-category-col">
-      <div class="store-secondary-category">
-        <app-fill-container [ratio]="{w:2, h:1}">
-          <a class="btn secondary-category-btn" [routerLink]="['/products/category', 'running']">
-            RUNNING
-          </a>
-        </app-fill-container>
-      </div>
-    </div>
-    <div class="col-6 col-lg-3 store-secondary-category-col">
+    <!-- <div class="col-6 col-lg-3 store-secondary-category-col">
       <div class="store-secondary-category">
         <app-fill-container [ratio]="{w:2, h:1}">
           <a class="btn secondary-category-btn" [routerLink]="['/products/category', 'golf']">
@@ -82,7 +53,7 @@
           </a>
         </app-fill-container>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 

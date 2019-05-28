@@ -21,7 +21,7 @@
     <!-- Product heading for small viewports -->
     <div class="col-12 d-block d-md-none product-heading">
       <h2 class="product-title">{{ product.title }}</h2>
-      <span class="product-price">{{ product.price }} KES</span>
+      <span class="product-price">Ksh {{ product.price }}</span>
     </div>
     <div class="col-12 col-md-6 col-lg-7 product-images" *ngIf="product.images && product.images.length">
       <app-preload-image [classes]="'expanded-image'" [ratio]="{w:1, h:1}" [src]="selectedImage" alt="Product image" title="Product image">
@@ -36,7 +36,7 @@
     <div class="col-12 col-md-6 col-lg-5 product-info">
       <div class="d-none d-md-block product-heading">
         <h2 class="product-title">{{ product.title }}</h2>
-        <span class="product-price">{{ product.price }} USD</span>
+        <span class="product-price">Ksh {{ product.price }}</span>
       </div>
       <form [formGroup]="productVariantForm" (ngSubmit)="onSubmit()">
         <div class="form-group product-color-chooser" *ngIf="product.colors && product.colors.length">

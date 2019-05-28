@@ -70,7 +70,9 @@ export class AuthService implements CanActivate {
     localStorage.removeItem('user_token');
     localStorage.removeItem('exp_date');
     localStorage.removeItem('user_profile');
+    localStorage.removeItem('categories');
     this.userAuthenticated = false;
+    this.loggedInSubject.next(false);
   }
 
   signup(data: any): any {

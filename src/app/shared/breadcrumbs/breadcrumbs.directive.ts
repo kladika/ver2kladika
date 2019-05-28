@@ -24,7 +24,7 @@ export class BreadcrumbsDirective implements OnInit, OnDestroy {
     this._routerSubscription = this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd),
-        map(() => this.activatedRoute),
+        map(() => this.activatedRoute ),
         map(route => {
           while (route.firstChild) { route = route.firstChild; }
           return route;
@@ -34,6 +34,7 @@ export class BreadcrumbsDirective implements OnInit, OnDestroy {
       )
       .subscribe((event) => {
         if (event['data'] && event['data'].breadcrumbs) {
+          // console.log(event['data'].breadcrumbs)
           this.breadcrumbsService.setBreadcrumbs(event['data'].breadcrumbs);
         } else {
           // Empty breadcrumbs

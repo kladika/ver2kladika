@@ -15,6 +15,7 @@ export class BreadcrumbsService {
   }
 
   setBreadcrumbs(breadcrumbs: Array<{label: string, url: string}>): void {
+    // console.log(breadcrumbs);
     this.breadcrumbsSubject.next(breadcrumbs);
   }
 }
