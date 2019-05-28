@@ -10,8 +10,8 @@
             <!-- <p class="divider dropdown-divider"> </p> -->
             <a class="dropdown-item" [routerLink]="['/products/category', cat.id, cat.name]" routerLinkActive="active" 
             [routerLinkActiveOptions]="{exact: true}">{{cat.name | uppercase}}</a>
-            <!-- <a class="dropdown-item" *ngFor="let sub of cat.sub_types" [routerLink]="['/products/category', 'outdoors']" 
-            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" style="padding-left:30px">{{sub.name}}</a> -->
+            <a class="dropdown-item" *ngFor="let sub of cat.sub_types" [routerLink]="['/products/category', 'outdoors']" 
+            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" style="padding-left:30px">{{sub.name}}</a>
           </li>
           <li class="divider dropdown-divider"></li>
           <li role="menuitem">

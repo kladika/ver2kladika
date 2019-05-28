@@ -31,9 +31,10 @@ export class TopNavbarComponent implements OnInit {
       this.authService.logout()
         .subscribe(
           res => {
-            localStorage.removeItem('user_token');
-            localStorage.removeItem('exp_date');
-            localStorage.removeItem('user_profile');
+            this.authService.clear_login_details();
+            // localStorage.removeItem('user_token');
+            // localStorage.removeItem('exp_date');
+            // localStorage.removeItem('user_profile');
             this.authService.userAuthenticated = false;
             this.authService.loggedInSubject.next(false);
             setTimeout(() => {
@@ -45,11 +46,12 @@ export class TopNavbarComponent implements OnInit {
           }
         );
       } else {
-        localStorage.removeItem('user_token');
-        localStorage.removeItem('exp_date');
-        localStorage.removeItem('user_profile');
+        this.authService.clear_login_details();
         this.authService.userAuthenticated = false;
         this.authService.loggedInSubject.next(false);
+        setTimeout(() => {
+          return this.router.navigate(['/']);
+        }, 500);
       }
     }
 }

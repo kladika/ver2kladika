@@ -42,30 +42,27 @@ export class AuthService implements CanActivate {
     const auth = JSON.parse(localStorage.getItem('user_token'));
     const exp_time = localStorage.getItem('exp_date');
     // console.log(auth);
-    // console.log(exp_time);
-    if (auth !== null && exp_time !== null && !this.call_check) {
-      this.call_check = true;
-      if (moment().format() > moment(exp_time).format()) {
-        // tslint:disable-next-line:max-line-length
-        // this.http_service.token_refresh().subscribe(res => { this.userAuthenticated = true;}, error => { this.clear_login_details(); });
-        console.log(this.userAuthenticated);
-      } else if (moment(exp_time).subtract(1, 'hours').format() < moment().format() && moment(exp_time).format() > moment().format()) {
-        this.http_service.token_refresh().subscribe(res => { this.userAuthenticated = true; }, error => { this.clear_login_details(); });
-      } else if (moment().format() < moment(exp_time).format()) {
-        this.userAuthenticated = true;
-      } else {
-        this.userAuthenticated = false;
-        localStorage.removeItem('user_token');
-        localStorage.removeItem('exp_date');
-      }
-    } else if (this.call_check) {
+    // console.log(exp_time);    //  && !this.call_check
+    if (auth !== null && exp_time !== null) {
       this.userAuthenticated = true;
+    //   this.call_check = true;
+    //   if (moment().format() > moment(exp_time).format()) {
+    //     this.userAuthenticated = true;
+    //     console.log(this.userAuthenticated);
+    //   } else if (moment(exp_time).subtract(1, 'hours').format() < moment().format() && moment(exp_time).format() > moment().format()) {
+    //     this.http_service.token_refresh().subscribe(res => { this.userAuthenticated = true; }, error => { this.clear_login_details(); });
+    //   } else {
+    //     this.userAuthenticated = false;
+    //     localStorage.removeItem('user_token');
+    //     localStorage.removeItem('exp_date');
+    //   }
+    // } else if (this.call_check) {
+    //   this.userAuthenticated = true;
     } else {
       this.userAuthenticated = false;
       localStorage.removeItem('user_token');
       localStorage.removeItem('exp_date');
     }
-    console.log(this.userAuthenticated);
     return this.userAuthenticated;
   }
 

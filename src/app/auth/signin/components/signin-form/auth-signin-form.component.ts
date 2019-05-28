@@ -64,6 +64,8 @@ export class AuthSigninFormComponent implements OnInit {
         console.log(res);
         this.signinForm.reset();
         this.success.emit(true);
+        this.authService.userAuthenticated = true;
+        this.authService.loggedInSubject.next(true);
         this.router.navigate(['/user']);
       },
       error => {
