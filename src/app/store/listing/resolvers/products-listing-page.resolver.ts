@@ -15,26 +15,24 @@ export class ProductsListingPageResolver implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     let category_slug;
     let tag_slug;
-    let cat_id;
 
     if (route.url[0] && (route.url[0].path === 'tag')) {
       tag_slug = route.params['slug'];
     } else if (route.url[0] && (route.url[0].path === 'category')) {
       category_slug = route.params['slug'];
-      cat_id = route.params['id'];
     }
 
     return new Promise((resolve, reject) => {
       if (category_slug) {
         // If the user is requesting products under a specific category
         forkJoin(
-          this.productsService.getProductsByCategory(cat_id)
+          this.productsService.getProductsByCategory(category_slug)
         ).subscribe((data: any) => {
           resolve({
-            products: data,
+            products: data[0],
             breadcrumbs: [
               { url: '/', label: 'HOME' },
-              { url: '/products/category/' + cat_id + '/' + category_slug, label: category_slug }
+              { url: '/products/category/' + category_slug, label: category_slug }
             ],
             seo: {
               title: category_slug + ' Category Products Listing',
@@ -42,44 +40,44 @@ export class ProductsListingPageResolver implements Resolve<any> {
               keywords: 'your, product, listing, keywords'
             }
           });
-        }); }
-      // } else if (tag_slug) {
-      //   // If the user is requesting products under a specific tag
-      //   forkJoin(
-      //     this.productsService.getProductsByTag(tag_slug)
-      //   ).subscribe((data: any) => {
-      //     resolve({
-      //       products: data[0],
-      //       breadcrumbs: [
-      //         { url: '/', label: 'HOME' },
-      //         { url: '/products/tag/' + tag_slug, label: tag_slug }
-      //       ],
-      //       seo: {
-      //         title: tag_slug + ' Tag Products Listing',
-      //         description: 'Your product listing description',
-      //         keywords: 'your, product, listing, keywords'
-      //       }
-      //     });
-      //   });
-      // } else {
-      //   // Default option, when the user requests all products
-      //   forkJoin(
-      //     this.productsService.getProducts()
-      //   ).subscribe((data: any) => {
-      //     resolve({
-      //       products: data,
-      //       breadcrumbs: [
-      //         { url: '/', label: 'HOME' },
-      //         { url: '/products', label: 'ALL products' }
-      //       ],
-      //       seo: {
-      //         title: 'Products Listing',
-      //         description: 'Your product listing description',
-      //         keywords: 'your, product, listing, keywords'
-      //       }
-      //     });
-      //   });
-      // }
+        });
+      } else if (tag_slug) {
+        // If the user is requesting products under a specific tag
+        forkJoin(
+          this.productsService.getProductsByTag(tag_slug)
+        ).subscribe((data: any) => {
+          resolve({
+            products: data[0],
+            breadcrumbs: [
+              { url: '/', label: 'HOME' },
+              { url: '/products/tag/' + tag_slug, label: tag_slug }
+            ],
+            seo: {
+              title: tag_slug + ' Tag Products Listing',
+              description: 'Your product listing description',
+              keywords: 'your, product, listing, keywords'
+            }
+          });
+        });
+      } else {
+        // Default option, when the user requests all products
+        forkJoin(
+          this.productsService.getProducts()
+        ).subscribe((data: any) => {
+          resolve({
+            products: data[0],
+            breadcrumbs: [
+              { url: '/', label: 'HOME' },
+              { url: '/products', label: 'ALL products' }
+            ],
+            seo: {
+              title: 'Products Listing',
+              description: 'Your product listing description',
+              keywords: 'your, product, listing, keywords'
+            }
+          });
+        });
+      }
     });
   }
 }

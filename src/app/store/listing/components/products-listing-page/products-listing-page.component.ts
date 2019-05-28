@@ -35,8 +35,7 @@ export class ProductsListingPageComponent implements OnInit {
       } else if (listing_path && listing_path.path === 'category') {
         this.category_slug = this.route.snapshot.params['slug'];
       }
-
-      this.products = this.route.snapshot.data['data'].products[0].results;
+      this.products = this.route.snapshot.data['data'].products.results;
     }, error => {console.log(error); } );
 
     const color_options_group = new FormGroup({
