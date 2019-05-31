@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { AuthService } from '../../../services/auth.service';
 // import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
@@ -12,7 +13,11 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class AuthSignupModalComponent {
 
-  constructor(public modalRef: BsModalRef) { }
+  constructor(public modalRef: BsModalRef, private authService: AuthService) {
+    authService.closeModalObservable().subscribe(res => {
+      if (res) { this.modalRef.hide(); authService.closeModalSubject.next(false);}
+    });
+   }
 
   handleSigninIntention(): void {
     console.log('Default behavior - AuthSignupModalComponent - handleSigninIntention()');

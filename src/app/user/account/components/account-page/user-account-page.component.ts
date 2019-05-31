@@ -19,22 +19,17 @@ export class UserAccountPageComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getprofile();
+    const profile = JSON.parse(localStorage.getItem('user_profile'));
+    profile ? this.user = profile : this.getprofile();
   }
 
   getprofile() {
-    const profile = JSON.parse(localStorage.getItem('user_profile'));
-    if (profile) {
-      this.user = profile;
-    } else {
-      this.authService.get_profile()
-        .subscribe(res => {
-          this.user = res;
-        },
-        error => {
-          console.log(error);
-        }
-        );
+    this.authService.get_profile()
+      .subscribe(res => {
+        this.user = res;
+      },
+      error => {
+        console.log(error);
       }
-    }
+      ); }
 }

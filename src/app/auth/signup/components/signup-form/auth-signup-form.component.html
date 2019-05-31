@@ -1,18 +1,19 @@
 <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="auth-form">
   <div class="form-group">
-    <label [attr.for]="'first_name'" class="auth-form-label">FIRST NAME</label>
+    <label [attr.for]="'first_name'" class="auth-form-label">FIRST NAME </label><span> *</span>
     <input type="text" class="form-control auth-form-input" formControlName="first_name" [id]="'first_name'" placeholder="Josh ">
   </div>
   <div class="form-group">
-    <label [attr.for]="'last_name'" class="auth-form-label">LAST NAME</label>
+    <label [attr.for]="'last_name'" class="auth-form-label">LAST NAME </label><span> *</span>
     <input type="text" class="form-control auth-form-input" formControlName="last_name" [id]="'last_name'" placeholder="Bates">
   </div>
   <div class="form-group">
-    <label [attr.for]="'email'" class="auth-form-label">EMAIL</label>
+    <label [attr.for]="'email'" class="auth-form-label">EMAIL </label><span> *</span>
     <input type="email" class="form-control auth-form-input" formControlName="email" [id]="'email'" placeholder="johndoe@gmail.com">
+    <p *ngIf="usernameError" style="color:#FF0000; font-size: 0.8rem">A user with that username already exists.</p>
   </div>
   <div class="form-group">
-    <label [attr.for]="'password'" class="auth-form-label">PASSWORD</label>
+    <label [attr.for]="'password'" class="auth-form-label">PASSWORD </label><span> *</span>
     <input type="password" class="form-control auth-form-input" formControlName="password" [id]="'password'" placeholder="&#10033; &#10033; &#10033; &#10033; &#10033;">
   </div>
   <div class="custom-control custom-checkbox auth-form-checkbox">
@@ -24,9 +25,11 @@
     <label class="custom-control-label auth-form-label" [attr.for]="'terms'">
       I agree to the
       <a class="auth-form-link terms-link" target="_blank" [routerLink]="['/terms']">
-        Terms & Conditions
+        Terms & Conditions 
       </a>
-    </label>
+    </label><span> *</span>
   </div>
-  <button type="submit" class="btn btn-block auth-form-submit-btn" [disabled]="!signupForm.valid">CREATE ACCOUNT</button>
+  <button type="submit" class="btn btn-block auth-form-submit-btn buttonload" [disabled]="!signupForm.valid">
+    <i *ngIf="buttonLoader" class="fa fa-spinner fa-spin "></i> CREATE ACCOUNT 
+  </button>
 </form>

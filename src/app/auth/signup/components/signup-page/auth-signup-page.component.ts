@@ -1,4 +1,6 @@
 import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-auth-signup-page',
@@ -9,9 +11,9 @@ import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AuthSignupPageComponent {
-  constructor() { }
-
-  redirectAccount(): void {
-    console.log('Do facebook signup');
+  constructor(public router: Router, private authService: AuthService) {
+    authService.loggedInObservable().subscribe(val => {
+      if (val) { this.router.navigate(['/user']); }
+    });
   }
 }

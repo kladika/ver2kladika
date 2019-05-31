@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
 import { Location } from '@angular/common';
 import { HttpServiceService } from '../../http-service/http-service.service';
 import { catchError, tap, map, mergeMap } from 'rxjs/operators';
@@ -11,16 +11,17 @@ import { async } from 'rxjs/internal/scheduler/async';
 @Injectable()
 export class AuthService implements CanActivate {
   loggedInSubject: BehaviorSubject<boolean>;
+  closeModalSubject: BehaviorSubject<boolean>;
   userAuthenticated = false;
   call_check = false;
-  public token = new HttpHeaders({ 'Content-type': 'application/x-www-form-urlencoded' });
-
+  public tokenHeaders = new HttpHeaders({ 'Content-type': 'application/x-www-form-urlencoded' });
+  public clientId = 'lxM7IDGzgY43lAwFLK6QLr2nazEpgEwK5upShF8y';
   constructor(private router: Router,
               private http: HttpClient,
               private location: Location,
               private http_service: HttpServiceService) {
-    // this.token_refresh();
     this.loggedInSubject = new BehaviorSubject<boolean>(this.isAuthenticated());
+    this.closeModalSubject = new BehaviorSubject<boolean>(false);
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -28,51 +29,21 @@ export class AuthService implements CanActivate {
     if (!this.isAuthenticated()) {
       this.router.navigate(['/login']);
     }
-
-    return this.isAuthenticated();
+    return true;
   }
 
   loggedInObservable(): Observable<boolean> {
     return this.loggedInSubject.asObservable();
   }
 
-
+  closeModalObservable(): Observable<boolean> {
+    return this.closeModalSubject.asObservable();
+  }
 
   isAuthenticated(): boolean {
     const auth = JSON.parse(localStorage.getItem('user_token'));
-    const exp_time = localStorage.getItem('exp_date');
-    // console.log(auth);
-    // console.log(exp_time);    //  && !this.call_check
-    if (auth !== null && exp_time !== null) {
-      this.userAuthenticated = true;
-    //   this.call_check = true;
-    //   if (moment().format() > moment(exp_time).format()) {
-    //     this.userAuthenticated = true;
-    //     console.log(this.userAuthenticated);
-    //   } else if (moment(exp_time).subtract(1, 'hours').format() < moment().format() && moment(exp_time).format() > moment().format()) {
-    //     this.http_service.token_refresh().subscribe(res => { this.userAuthenticated = true; }, error => { this.clear_login_details(); });
-    //   } else {
-    //     this.userAuthenticated = false;
-    //     localStorage.removeItem('user_token');
-    //     localStorage.removeItem('exp_date');
-    //   }
-    // } else if (this.call_check) {
-    //   this.userAuthenticated = true;
-    } else {
-      this.userAuthenticated = false;
-      localStorage.removeItem('user_token');
-      localStorage.removeItem('exp_date');
-    }
+    auth ? this.userAuthenticated = true : this.userAuthenticated = false;
     return this.userAuthenticated;
-  }
-
-  clear_login_details() {
-    localStorage.removeItem('user_token');
-    localStorage.removeItem('exp_date');
-    localStorage.removeItem('user_profile');
-    localStorage.removeItem('categories');
-    this.userAuthenticated = false;
-    this.loggedInSubject.next(false);
   }
 
   signup(data: any): any {
@@ -80,15 +51,17 @@ export class AuthService implements CanActivate {
     const httpOptions = { headers: this.http_service.headers};
     return this.http
       .post(newurl, data, httpOptions)
-      .pipe(map(res => {
-        const user_data = {'username': data.username, 'password': data.password};
-        return this.get_token(user_data);
-      }));
+      .pipe(
+      //   map(res => {
+      //   const user_data = {'username': data.username, 'password': data.password};
+      //   return this.get_token(user_data);
+      // })
+      );
   }
 
   get_token(data): any {
     const newurl = `${this.http_service.apiURL}o/token/`;
-    const httpOptions = { headers: this.token};
+    const httpOptions = { headers: this.tokenHeaders};
     return this.http
       .post<any>(newurl, data, httpOptions)
       .pipe(mergeMap(res => {
@@ -102,16 +75,16 @@ export class AuthService implements CanActivate {
   token_refresh(): any {
     const auth = JSON.parse(localStorage.getItem('user_token'));
     // tslint:disable-next-line:max-line-length
-    const data = `grant_type=${'refresh_token'}&refresh_token=${auth.refresh_token}&client_id=${'lxM7IDGzgY43lAwFLK6QLr2nazEpgEwK5upShF8y'}`;
+    const data = `grant_type=${'refresh_token'}&refresh_token=${auth.refresh_token}&client_id=${this.clientId}`;
     const newurl = `${this.http_service.apiURL}o/token/`;
-    const httpOptions = { headers: this.token };
+    const httpOptions = { headers: this.tokenHeaders };
     return this.http
       .post(newurl, data, httpOptions)
       .pipe((map(res => {
         console.log(res);
         localStorage.setItem('user_token', JSON.stringify(res));
         return res;
-      })));
+      })), catchError(this.http_service.handleError()));
   }
 
   get_profile(): any {
@@ -128,18 +101,28 @@ export class AuthService implements CanActivate {
 
 
   logout(): any {
+    console.log('log out seen');
     const auth = JSON.parse(localStorage.getItem('user_token'));
-    const data = `token=${auth.access_token}&client_id=${'lxM7IDGzgY43lAwFLK6QLr2nazEpgEwK5upShF8y'}`;
-    const newurl = `${this.http_service.apiURL}o/revoke_token/`;
-    const httpOptions = { headers: this.token };
-    return this.http
-      .post(newurl, data, httpOptions)
-      .pipe(
-        map(res => {
-          console.log(res);
-          return res;
-        })
-      );
+    if (auth) {
+      const data = `token=${auth.access_token}&client_id=${this.clientId}`;
+      const newurl = `${this.http_service.apiURL}o/revoke_token/`;
+      const httpOptions = { headers: this.tokenHeaders };
+      return this.http
+        .post(newurl, data, httpOptions)
+        .pipe(
+          map(res => {
+            localStorage.clear();
+            if (this.router.url === '/user') { this.router.navigate(['']); }
+            this.loggedInSubject.next(false);
+            return res;
+          })
+        );
+    } else {
+      localStorage.clear();
+      this.loggedInSubject.next(false);
+      if (this.router.url === '/user') { this.router.navigate(['']); }
+      return throwError('credentials');
+    }
   }
 
   forgot_password(data): any {

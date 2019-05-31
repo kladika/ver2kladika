@@ -125,7 +125,7 @@
           <h3 class="product-sub-title">DESCRIPTION</h3>
           <p class="product-description">{{ product.description }}</p>
         </ng-container>
-        <button class="btn btn-block buy-now-btn" *ngIf="(loggedInObservable | async) === false" (click)="openAuthModal()">
+        <button class="btn btn-block buy-now-btn" *ngIf="!(loggedInObservable | async)" (click)="openAuthModal()" type="button">
           BUY NOW
         </button>
         <button class="btn btn-block buy-now-btn" *ngIf="(loggedInObservable | async)" type="submit">

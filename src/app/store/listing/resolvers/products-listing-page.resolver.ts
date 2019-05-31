@@ -15,18 +15,21 @@ export class ProductsListingPageResolver implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     let category_slug;
     let tag_slug;
+    let category_id;
 
     if (route.url[0] && (route.url[0].path === 'tag')) {
       tag_slug = route.params['slug'];
+      console.log('tag')
     } else if (route.url[0] && (route.url[0].path === 'category')) {
       category_slug = route.params['slug'];
+      category_id = route.params['id'];
     }
 
     return new Promise((resolve, reject) => {
       if (category_slug) {
         // If the user is requesting products under a specific category
         forkJoin(
-          this.productsService.getProductsByCategory(category_slug)
+          this.productsService.getProductsByCategory(category_id)
         ).subscribe((data: any) => {
           resolve({
             products: data[0],

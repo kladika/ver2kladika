@@ -18,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
 import { CacheMapService } from './cache-service/cache-map.service';
 import { httpInterceptorProviders } from './http-interceptors';
 import { StoreProductsService } from './store/services/products.service';
+import { AuthInterceptor } from './authInterceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { StoreProductsService } from './store/services/products.service';
     CoreModule,
     SharedModule,
     BrowserAnimationsModule,
-    TransferHttpCacheModule
+    TransferHttpCacheModule,
   ],
   bootstrap: [ AppComponent ],
   providers: [
@@ -43,6 +44,11 @@ import { StoreProductsService } from './store/services/products.service';
     StoreProductsService,
     httpInterceptorProviders,
     CacheMapService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ]
 })
 export class AppModule {}

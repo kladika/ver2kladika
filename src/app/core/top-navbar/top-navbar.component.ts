@@ -26,29 +26,14 @@ export class TopNavbarComponent implements OnInit {
   }
 
   logout(): void {
-    const auth = JSON.stringify(localStorage.getItem('user_token'));
-    if (auth) {
       this.authService.logout()
         .subscribe(
           res => {
-            this.authService.clear_login_details();
-            this.authService.userAuthenticated = false;
-            this.authService.loggedInSubject.next(false);
-            setTimeout(() => {
-              return this.router.navigate(['/']);
-            }, 500);
+            console.log(res);
           },
           err => {
             console.log('Could\'t log out the user');
           }
         );
-      } else {
-        this.authService.clear_login_details();
-        this.authService.userAuthenticated = false;
-        this.authService.loggedInSubject.next(false);
-        setTimeout(() => {
-          return this.router.navigate(['/']);
-        }, 500);
       }
-    }
 }
