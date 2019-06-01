@@ -21,4 +21,19 @@ export class AuthSigninModalComponent {
       }
     });
    }
+   
+  handleSignupIntention(): void {
+    console.log('Default behavior - AuthSigninModalComponent - handleSignupIntention()');
+  }
+
+  handleSocialSigninIntention(): void {
+    console.log('Default behavior - AuthSigninModalComponent - handleSocialSigninIntention()');
+  }
+
+  signinSuccess(success) {
+    console.log(success);
+    if (success) {
+      this.modalRef.hide();
+    }
+  }
 }

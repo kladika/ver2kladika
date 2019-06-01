@@ -15,7 +15,7 @@ export class AuthSignupModalComponent {
 
   constructor(public modalRef: BsModalRef, private authService: AuthService) {
     authService.closeModalObservable().subscribe(res => {
-      if (res) { this.modalRef.hide(); authService.closeModalSubject.next(false);}
+      if (res) { this.modalRef.hide(); authService.closeModalSubject.next(false); }
     });
    }
 
